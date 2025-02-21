@@ -16,10 +16,10 @@ import BookDetails from "./Homepage/BookDetails";
 // Income Statistic
 import IncomeStatistic from "./IncomeStatistic/IncomeStatistic";
 // Import promotion
-import PromotionManagement from "./PromotionManagement/PromotionManagement";
-import AddPromotion from "./PromotionManagement/AddPromotion";
-import EditPromotion from "./PromotionManagement/EditPromotion";
-import PromotionDetail from "./PromotionManagement/PromotionDetail";
+//import PromotionManagement from "./PromotionManagement/PromotionManagement";
+// import AddPromotion from "./PromotionManagement/AddPromotion";
+// import EditPromotion from "./PromotionManagement/EditPromotion";
+// import PromotionDetail from "./PromotionManagement/PromotionDetail";
 
 // Import order
 import OrderManagement from "./OrderManagement/OrderManagement";
@@ -50,10 +50,10 @@ import EditAccount from "./AccountManagement/EditAccount";
 import AccountManagement from "./AccountManagement/AccountManagement";
 
 // Import notification
-import NotificationManagement from "./NotificationManagement/NotificationManagement";
-import AddNotification from "./NotificationManagement/AddNotification";
-import NotificationDetail from "./NotificationManagement/NotificationDetail";
-import Notifications from "./Homepage/Notifications";
+// import NotificationManagement from "./NotificationManagement/NotificationManagement";
+// import AddNotification from "./NotificationManagement/AddNotification";
+// import NotificationDetail from "./NotificationManagement/NotificationDetail";
+// import Notifications from "./Homepage/Notifications";
 
 // Import category
 import CategoryManagement from "./CategoryManagement/CategoryManagement";
@@ -129,10 +129,10 @@ function App() {
         <Route path="/dashboard/inventory/addstock" element={<AddStock />} />
 
         {/* Manage promotions */}
-        <Route path="/dashboard/detail/:proID" element={<PromotionDetail />} />
+        {/* <Route path="/dashboard/detail/:proID" element={<PromotionDetail />} />
         <Route path="/dashboard/promotions" element={<PromotionManagement />} />
         <Route path="/dashboard/add" element={<AddPromotion />} />
-        <Route path="/dashboard/edit/:proID" element={<EditPromotion />} />
+        <Route path="/dashboard/edit/:proID" element={<EditPromotion />} /> */}
 
         {/* Manage orders */}
         <Route path="/dashboard/orders" element={<OrderManagement />} />
@@ -161,7 +161,7 @@ function App() {
         <Route path="/dashboard/accounts/:username" element={<EditAccount />} />
 
         {/* Manage notifications */}
-        <Route
+        {/* <Route
           path="/dashboard/notifications/"
           element={<NotificationManagement />}
         />
@@ -173,7 +173,7 @@ function App() {
           path="/dashboard/notifications/add"
           element={<AddNotification />}
         />
-        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/notifications" element={<Notifications />} /> */}
 
         {/* Manage categories */}
         <Route path="/dashboard/category" element={<CategoryManagement />} />
