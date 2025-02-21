@@ -1,0 +1,97 @@
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    /* 2 cột: sidebar chiếm 1 phần và nội dung chính chiếm 3 phần */
+    grid-template-rows: auto 50px;
+    /* Hàng 1 tự động điều chỉnh theo nội dung, hàng 2 cố định chiều cao 50px */
+    height: 100vh;
+    /* Chiều cao toàn trang */
+}
+
+.dashboard-container {
+    grid-column: 1 / 2;
+    /* Cột đầu tiên */
+    grid-row: 1 / 2;
+    /* Hàng đầu tiên */
+    background-color: #4b301f;
+    /* Màu cam đậm FPT */
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    background-image: url('https://daihoc.fpt.edu.vn/wp-content/uploads/2022/04/dai-hoc-fpt-2-3.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Styles for the main dashboard content */
+.dashboard-content {
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Semi-transparent white background */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+    text-align: center;
+    margin: 20px;
+}
+
+/* Styles for the title in the dashboard */
+.dashboard-content h1 {
+    font-size: 2.5rem;
+    /* Large font size */
+    color: #333;
+    /* Darker text color for contrast */
+    margin-bottom: 15px;
+}
+
+/* Styles for the description text */
+.dashboard-content p {
+    font-size: 1.2rem;
+    /* Slightly larger font for readability */
+    color: #666;
+    /* Softer color for body text */
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Copyright section */
+.copyright {
+    grid-column: 1 / 3;
+    /* Nằm ngang qua cả hai cột */
+    grid-row: 2 / 4;
+    background-color: #333;
+    /* Dark background for footer */
+    color: #fff;
+    /* White text for contrast */
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+    /* Smaller font size for copyright */
+    border-radius: 8px;
+    margin: 20px;
+}
+
+/* Styling for individual copyright lines */
+.copyright div {
+    margin: 5px 0;
+    /* Adds a bit of spacing between the lines */
+}
+
+/* Add responsiveness for mobile screens */
+@media screen and (max-width: 768px) {
+    .dashboard-content {
+        padding: 20px;
+        font-size: 1rem;
+        /* Adjust font size on smaller screens */
+    }
+
+    .dashboard-content h1 {
+        font-size: 2rem;
+    }
+
+    .dashboard-content p {
+        font-size: 1rem;
+    }
+}
