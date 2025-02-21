@@ -15,11 +15,6 @@ import BookDetails from "./Homepage/BookDetails";
 
 // Income Statistic
 import IncomeStatistic from "./IncomeStatistic/IncomeStatistic";
-// Import promotion
-//import PromotionManagement from "./PromotionManagement/PromotionManagement";
-// import AddPromotion from "./PromotionManagement/AddPromotion";
-// import EditPromotion from "./PromotionManagement/EditPromotion";
-// import PromotionDetail from "./PromotionManagement/PromotionDetail";
 
 // Import order
 import OrderManagement from "./OrderManagement/OrderManagement";
@@ -48,12 +43,6 @@ import AccountDetail from "./AccountManagement/AccountDetail";
 import AddAccount from "./AccountManagement/AddAccount";
 import EditAccount from "./AccountManagement/EditAccount";
 import AccountManagement from "./AccountManagement/AccountManagement";
-
-// Import notification
-// import NotificationManagement from "./NotificationManagement/NotificationManagement";
-// import AddNotification from "./NotificationManagement/AddNotification";
-// import NotificationDetail from "./NotificationManagement/NotificationDetail";
-// import Notifications from "./Homepage/Notifications";
 
 // Import category
 import CategoryManagement from "./CategoryManagement/CategoryManagement";
@@ -128,12 +117,6 @@ function App() {
         />
         <Route path="/dashboard/inventory/addstock" element={<AddStock />} />
 
-        {/* Manage promotions */}
-        {/* <Route path="/dashboard/detail/:proID" element={<PromotionDetail />} />
-        <Route path="/dashboard/promotions" element={<PromotionManagement />} />
-        <Route path="/dashboard/add" element={<AddPromotion />} />
-        <Route path="/dashboard/edit/:proID" element={<EditPromotion />} /> */}
-
         {/* Manage orders */}
         <Route path="/dashboard/orders" element={<OrderManagement />} />
         <Route path="/dashboard/orders/detail/:id" element={<OrderDetail />} />
@@ -159,21 +142,6 @@ function App() {
         />
         <Route path="/dashboard/accounts/add" element={<AddAccount />} />
         <Route path="/dashboard/accounts/:username" element={<EditAccount />} />
-
-        {/* Manage notifications */}
-        {/* <Route
-          path="/dashboard/notifications/"
-          element={<NotificationManagement />}
-        />
-        <Route
-          path="/dashboard/notifications/detail/:notID"
-          element={<NotificationDetail />}
-        />
-        <Route
-          path="/dashboard/notifications/add"
-          element={<AddNotification />}
-        />
-        <Route path="/notifications" element={<Notifications />} /> */}
 
         {/* Manage categories */}
         <Route path="/dashboard/category" element={<CategoryManagement />} />
