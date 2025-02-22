@@ -454,7 +454,10 @@ const Homepage = () => {
     if (imageUrl && imageUrl.startsWith("/uploads/book_")) {
       return `http://localhost:6789${imageUrl}`; // Add base URL if needed
     }
-    return imageUrl || "/logo-capybook.png"; // Default image
+    return (
+      imageUrl ||
+      "public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+    ); // Default image
   };
 
   return (

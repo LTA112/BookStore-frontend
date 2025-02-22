@@ -65,8 +65,8 @@ const Login = () => {
       >
         {/* Logo được thêm ở đây */}
         <img
-          src="/logo-capybook.png"
-          alt="Capybook Logo"
+          src="public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+          alt="BookStore Logo"
           className="login-logo"
         />
         <h1>LOGIN</h1>

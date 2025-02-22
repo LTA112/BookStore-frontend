@@ -167,7 +167,7 @@ const OrderHistory = () => {
 
   const normalizeImageUrl = (imageUrl) => {
     if (!imageUrl || typeof imageUrl !== "string") {
-      return "/logo-capybook.png"; // Đường dẫn ảnh mặc định
+      return "public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"; // Đường dẫn ảnh mặc định
     }
     if (imageUrl.startsWith("/uploads")) {
       return `http://localhost:6789${imageUrl}`; // Gắn đường dẫn đầy đủ nếu bắt đầu bằng `/uploads`
@@ -468,8 +468,8 @@ const OrderHistory = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="/logo-capybook.png"
-            alt="Capybook Logo"
+            src="public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+            alt="BookStore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>

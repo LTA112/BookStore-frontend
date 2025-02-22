@@ -195,8 +195,8 @@ const BookDetails = () => {
           onClick={() => navigate("/")} // Navigate to homepage when clicked
         >
           <img
-            src="/logo-capybook.png"
-            alt="Capybook Logo"
+            src="public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+            alt="BookStore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
@@ -263,14 +263,20 @@ const BookDetails = () => {
             <div style={{ flex: "1" }}>
               <Image
                 width={300}
-                src={imagePreview || "/logo-capybook.png"}
+                src={
+                  imagePreview ||
+                  "public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+                }
                 alt={bookData.bookTitle}
                 style={{ borderRadius: "8px" }}
               />
               <div style={{ marginTop: "20px", display: "flex", gap: "10px" }}>
                 <Image
                   width={60}
-                  src={imagePreview || "/logo-capybook.png"}
+                  src={
+                    imagePreview ||
+                    "public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+                  }
                   style={{ cursor: "pointer" }}
                 />
               </div>

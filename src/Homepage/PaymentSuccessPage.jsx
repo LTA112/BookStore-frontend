@@ -57,7 +57,9 @@ const PaymentSuccessPage = () => {
           price: item.bookID?.bookPrice || 0,
           quantity: item.quantity,
           total: (item.bookID?.bookPrice || 0) * (item.quantity || 1),
-          image: item.bookID?.image || "/logo-capybook.png",
+          image:
+            item.bookID?.image ||
+            "public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg",
           bookStatus: item.bookID?.bookStatus,
           bookQuantity: item.bookID?.bookQuantity || 0,
         }));
@@ -235,8 +237,8 @@ const PaymentSuccessPage = () => {
             onClick={() => navigate("/")}
           >
             <img
-              src="/logo-capybook.png"
-              alt="Capybook Logo"
+              src="public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+              alt="BookStore Logo"
               style={{ height: "40px", marginRight: "20px" }}
             />
             <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
@@ -276,8 +278,8 @@ const PaymentSuccessPage = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="/logo-capybook.png"
-            alt="Capybook Logo"
+            src="public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+            alt="BookStore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
@@ -341,7 +343,10 @@ const PaymentSuccessPage = () => {
                 >
                   Return Homepage
                 </Button>,
-                <Button key="support" onClick={() => navigate("/cart/ViewDetail")}>
+                <Button
+                  key="support"
+                  onClick={() => navigate("/cart/ViewDetail")}
+                >
                   Return Shoping Cart
                 </Button>,
               ]}

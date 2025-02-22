@@ -78,7 +78,7 @@ const CartDetails = () => {
 
   const normalizeImageUrl = (imageUrl) => {
     if (!imageUrl || typeof imageUrl !== "string") {
-      return "/logo-capybook.png"; // Đường dẫn ảnh mặc định
+      return "public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"; // Đường dẫn ảnh mặc định
     }
     if (imageUrl.startsWith("/uploads")) {
       return `http://localhost:6789${imageUrl}`; // Gắn đường dẫn đầy đủ nếu bắt đầu bằng `/uploads`
@@ -111,10 +111,10 @@ const CartDetails = () => {
             prev.map((item) =>
               item.id === itemId
                 ? {
-                  ...item,
-                  quantity: item.bookQuantity,
-                  total: item.bookQuantity * item.price,
-                }
+                    ...item,
+                    quantity: item.bookQuantity,
+                    total: item.bookQuantity * item.price,
+                  }
                 : item
             )
           );
@@ -168,10 +168,10 @@ const CartDetails = () => {
           prev.map((item) =>
             item.id === itemId
               ? {
-                ...item,
-                quantity: item.quantity,
-                total: item.quantity * item.price,
-              }
+                  ...item,
+                  quantity: item.quantity,
+                  total: item.quantity * item.price,
+                }
               : item
           )
         );
@@ -414,7 +414,6 @@ const CartDetails = () => {
         >
           {cartItems.length === 0 ? (
             <div style={{ textAlign: "center", padding: "20px" }}>
-
               <Text style={{ fontSize: "18px", fontWeight: "bold" }}>
                 Your Cart is empty{" "}
               </Text>
