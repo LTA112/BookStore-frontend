@@ -126,7 +126,6 @@ function InventoryManagement() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
-    const [suppliers, setSuppliers] = useState({});
     const [staffs, setStaffs] = useState({});
     const [orders, setOrders] = useState([]);
     const [filteredOrders, setFilteredOrders] = useState([]);
@@ -158,20 +157,14 @@ function InventoryManagement() {
             if (Array.isArray(response.data)) {
                 const importStocksData = response.data;
 
-                const uniqueSupIDs = [...new Set(importStocksData.map((stock) => stock.supID?.supID))].filter((id) => id);
                 const uniqueStaffIDs = [
                     ...new Set(importStocksData.map((stock) => (typeof stock.staffID === "object" ? stock.staffID.staffID : stock.staffID))),
                 ].filter((id) => id);
 
-                const supplierPromises = uniqueSupIDs.map((id) =>
-                    fetchSupplierById(id).then((res) => ({ id, data: res.data }))
-                );
-                const suppliersData = await Promise.all(supplierPromises);
-                const suppliersMap = suppliersData.reduce((map, item) => {
-                    map[item.id] = item.data;
-                    return map;
-                }, {});
-                setSuppliers(suppliersMap);
+
+
+
+
 
                 const staffPromises = uniqueStaffIDs.map(async (id) => {
                     try {
@@ -353,12 +346,7 @@ function InventoryManagement() {
     const importColumns = useMemo(
         () => [
             { title: "Stock ID", dataIndex: "isid", key: "isid" },
-            {
-                title: "Supplier",
-                dataIndex: "supID",
-                key: "supID",
-                render: (supID) => suppliers[supID?.supID]?.supName || "N/A",
-            },
+
             {
                 title: "Staff",
                 dataIndex: "staffID",
@@ -394,7 +382,7 @@ function InventoryManagement() {
                 ),
             },
         ],
-        [suppliers, staffs]
+        [staffs]
     );
 
     // Export Columns

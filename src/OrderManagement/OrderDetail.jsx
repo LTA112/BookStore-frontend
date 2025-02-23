@@ -6,7 +6,6 @@ import {
   fetchOrderDetail,
   fetchAccountDetail,
   fetchBookDetail,
-  fetchPromotionDetail,
   fetchStaffDetail,
 } from "../config";
 import {
@@ -68,12 +67,7 @@ const OrderDetail = () => {
           });
           setOrderDetails(updatedOrderDetails);
 
-          // Fetch promotion details if applicable
-          const proID = orderData.data.order?.proID;
-          if (proID) {
-            const promotionData = await fetchPromotionDetail(proID);
-            setDiscount(promotionData.data.discount || 0);
-          }
+
         } catch (error) {
           message.error("Failed to fetch data");
           console.error("Error fetching data:", error);
@@ -185,7 +179,7 @@ const OrderDetail = () => {
                   (acc, item) => acc + (item.totalPrice || 0),
                   0
                 ) *
-                  (1 - discount / 100)
+                (1 - discount / 100)
               )}{" "}
               VNĐ
             </Descriptions.Item>

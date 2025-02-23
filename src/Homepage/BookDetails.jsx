@@ -199,7 +199,7 @@ const BookDetails = () => {
             alt="BookStore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>BookStore</div>
         </div>
 
         <Search
