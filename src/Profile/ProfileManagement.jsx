@@ -106,8 +106,8 @@ const ProfileManagement = () => {
                     style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
                     onClick={() => navigate('/')} // Navigate to homepage when clicked
                 >
-                    <img src="/logo-capybook.png" alt="Capybook Logo" style={{ height: '40px', marginRight: '20px' }} />
-                    <div style={{ fontSize: '20px', fontWeight: 'bold' }}>Capybook</div>
+                    <img src="/logo-BookStore.png" alt="BookStore Logo" style={{ height: '40px', marginRight: '20px' }} />
+                    <div style={{ fontSize: '20px', fontWeight: 'bold' }}>BookStore</div>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -334,7 +334,7 @@ const ProfileManagement = () => {
                     width: '100%'
                 }}
             >
-                <div>© {new Date().getFullYear()} Capybook Management System</div>
+                <div>© {new Date().getFullYear()} BookStore Management System</div>
                 <div>All Rights Reserved</div>
             </Footer>
         </Layout>

@@ -364,7 +364,7 @@ const CartDetails = () => {
             alt="BookStore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>BookStore</div>
         </div>
 
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -404,7 +404,7 @@ const CartDetails = () => {
         <Card
           title={
             <div>
-              Shopping Cart - CapyBook{" "}
+              Shopping Cart - BookStore{" "}
               <Text type="secondary" style={{ fontSize: "14px" }}>
                 ({countValidItems()} products)
               </Text>
@@ -719,7 +719,7 @@ const CartDetails = () => {
           width: "100%",
         }}
       >
-        <div>© {new Date().getFullYear()} Capybook Management System</div>
+        <div>© {new Date().getFullYear()} BookStore Management System</div>
         <div>All Rights Reserved</div>
       </Footer>
     </Layout>

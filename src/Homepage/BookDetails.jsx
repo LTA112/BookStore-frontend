@@ -438,7 +438,7 @@ const BookDetails = () => {
           width: "100%",
         }}
       >
-        <div>© {new Date().getFullYear()} Capybook Management System</div>
+        <div>© {new Date().getFullYear()} BookStore Management System</div>
         <div>All Rights Reserved</div>
       </Footer>
     </Layout>
