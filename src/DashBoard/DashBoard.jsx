@@ -28,16 +28,16 @@ function Dashboard() {
 
       {/* Right Side Content */}
       <div className="dashboard-content">
-        <h1>Welcome to Capybook Management System</h1>
+        <h1>Welcome to BookStore Management System</h1>
         <p>
-          Here is where you can manage your books, orders, promotions, and more.
+          Here is where you can manage your books, orders, and more.
         </p>
       </div>
 
       {/* Footer */}
       <div className="copyright">
         <div>© Copyright {new Date().getFullYear()}</div>
-        <div>Capybook Management System</div>
+        <div>BookStore Management System</div>
         <div>All Rights Reserved</div>
       </div>
     </div>

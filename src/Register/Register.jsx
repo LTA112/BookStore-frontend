@@ -52,7 +52,7 @@ const Register = () => {
       <div className="register-form">
         {/* Logo ở trên cùng */}
         <img
-          src="public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+          src="/public/logo-book.png"
           alt="BookStore Logo"
           className="register-logo"
         />

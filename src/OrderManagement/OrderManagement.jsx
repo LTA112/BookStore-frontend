@@ -81,9 +81,8 @@ const OrderManagement = () => {
               const accountData = accountResponse.data;
               return {
                 ...order,
-                fullName: `${accountData.firstName || ""} ${
-                  accountData.lastName || ""
-                }`.trim(), // Gắn thông tin đầy đủ
+                fullName: `${accountData.firstName || ""} ${accountData.lastName || ""
+                  }`.trim(), // Gắn thông tin đầy đủ
               };
             } catch (error) {
               console.error(

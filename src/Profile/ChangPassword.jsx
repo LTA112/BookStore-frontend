@@ -137,7 +137,7 @@ function ChangePassword() {
             onClick={() => navigate("/")} // Navigate to homepage when clicked
           >
             <img
-              src="public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+              src="/public/logo-book.png"
               alt="BookStore Logo"
               style={{ height: "40px", marginRight: "20px" }}
             />

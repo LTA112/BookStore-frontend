@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from "react";
 import { Table, Button, Input, Tabs, Spin, Modal, Descriptions, message, DatePicker } from "antd";
 import {
     fetchImportStocks,
-    fetchSupplierById,
     fetchStaffDetail,
     fetchImportStockDetailsByStockId,
     fetchOrders,

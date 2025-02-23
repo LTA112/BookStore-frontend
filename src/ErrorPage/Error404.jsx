@@ -143,7 +143,7 @@ const PageNotFound = () => {
           padding: "10px 0",
         }}
       >
-        <div>© {new Date().getFullYear()} Capybook Management System</div>
+        <div>© {new Date().getFullYear()} BookStore Management System</div>
         <div>All Rights Reserved</div>
       </Footer>
     </Layout>

@@ -13,8 +13,6 @@ import ViewBookDetail from "./BookManagement/ViewBookDetail";
 import EditBook from "./BookManagement/EditBook";
 import BookDetails from "./Homepage/BookDetails";
 
-// Income Statistic
-import IncomeStatistic from "./IncomeStatistic/IncomeStatistic";
 
 // Import order
 import OrderManagement from "./OrderManagement/OrderManagement";
@@ -32,11 +30,6 @@ import InventoryManagement from "./InventoryManagement/InventoryManagement";
 import ViewStockDetail from "./InventoryManagement/ViewStockDetail";
 import AddStock from "./InventoryManagement/AddStock";
 
-// Import supplier
-import AddSupplier from "./SupplierManagement/AddSupplier";
-import SupplierManagement from "./SupplierManagement/SupplierManagement";
-import ViewSupplierDetail from "./SupplierManagement/ViewSupplierDetail";
-import EditSupplier from "./SupplierManagement/EditSupplier";
 
 // Import account
 import AccountDetail from "./AccountManagement/AccountDetail";
@@ -100,11 +93,6 @@ function App() {
           path="/dashboard/books/detail/:bookId"
           element={<ViewBookDetail />}
         />
-        {/* IncomeStatistic */}
-        <Route
-          path="/dashboard/income-statistic"
-          element={<IncomeStatistic />}
-        />
 
         {/* Manage cart */}
         <Route path="/cart/ViewDetail" element={<CartDetails />} />
@@ -122,17 +110,7 @@ function App() {
         <Route path="/dashboard/orders/detail/:id" element={<OrderDetail />} />
         <Route path="/dashboard/orders/add" element={<AddOrder />}></Route>
 
-        {/* Manage suppliers */}
-        <Route path="/dashboard/suppliers" element={<SupplierManagement />} />
-        <Route path="/dashboard/suppliers/add" element={<AddSupplier />} />
-        <Route
-          path="/dashboard/supplier/:supID"
-          element={<ViewSupplierDetail />}
-        />
-        <Route
-          path="/dashboard/suppliers/edit/:supID"
-          element={<EditSupplier />}
-        />
+
 
         {/* Manage accounts */}
         <Route path="/dashboard/accounts" element={<AccountManagement />} />

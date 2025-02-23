@@ -356,9 +356,6 @@ const Homepage = () => {
   const handleCartClick = () => {
     navigate("/cart/ViewDetail");
   };
-  const handleDashboardClick = () => {
-    navigate("/dashboard/income-statistic");
-  };
 
   const handleBookClick = (bookId) => {
     navigate(`/detail/${bookId}`); // Adjust this route based on your router configuration
@@ -478,8 +475,8 @@ const Homepage = () => {
           onClick={() => navigate("/")} // Navigate to homepage when clicked
         >
           <img
-            src="/logo-capybook.png"
-            alt="Capybook Logo"
+            src="/public/logo-book.png"
+            alt="BookStore logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
@@ -645,7 +642,7 @@ const Homepage = () => {
               {categories.at(selectedCategory - 1).catDescription}
             </>
           ) : (
-            "Welcome to CapyBook!"
+            "Welcome to Our BookStore!"
           )}
         </Card>
         <br></br>
@@ -884,7 +881,7 @@ const Homepage = () => {
           width: "100%",
         }}
       >
-        <div>© {new Date().getFullYear()} Capybook Management System</div>
+        <div>© {new Date().getFullYear()} BookStore Management System</div>
         <div>All Rights Reserved</div>
       </Footer>
     </Layout>

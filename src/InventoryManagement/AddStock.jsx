@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Input, Select, DatePicker, InputNumber, message, Modal, Table, Upload, TreeSelect } from "antd";
-import { fetchSuppliers, fetchStaffs, createImportStock, fetchBooks, addImportStockDetail, addBook, fetchCategories, updateBook } from "../config";
+import { fetchStaffs, createImportStock, fetchBooks, addImportStockDetail, addBook, fetchCategories, updateBook } from "../config";
 import DashboardContainer from "../DashBoard/DashBoardContainer";
 import { useNavigate } from "react-router-dom";
 import { PlusOutlined } from "@ant-design/icons";
@@ -12,7 +12,6 @@ function AddStock() {
     const [addStockForm] = Form.useForm();
     const [addBookForm] = Form.useForm();
 
-    const [suppliers, setSuppliers] = useState([]);
     const [staff, setStaff] = useState([]);
     const [books, setBooks] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -34,8 +33,7 @@ function AddStock() {
         }
         const fetchData = async () => {
             try {
-                const supplierResponse = await fetchSuppliers();
-                setSuppliers(supplierResponse.data || []);
+
 
                 const staffResponse = await fetchStaffs();
                 setStaff(staffResponse.data || []);
@@ -299,7 +297,6 @@ function AddStock() {
             });
 
             const stockData = {
-                supID: { supID: values.supID },
                 importDate: values.importDate.format("YYYY-MM-DD"),
                 staffID: { staffID: values.staffID },
                 ISStatus: 1,
@@ -383,15 +380,7 @@ function AddStock() {
                     console.error("Validation failed:", errorInfo);
                     message.error("Validation failed. Please check the form.");
                 }} layout="vertical" style={{ maxWidth: "800px", margin: "auto" }}>
-                    <Form.Item label="Supplier" name="supID" rules={[{ required: true, message: "Please select a supplier" }]}>
-                        <Select placeholder="Select Supplier">
-                            {suppliers.map(supplier => (
-                                <Option key={supplier.supID} value={supplier.supID}>
-                                    {supplier.supName}
-                                </Option>
-                            ))}
-                        </Select>
-                    </Form.Item>
+
 
                     <Form.Item label="Import Date" name="importDate" rules={[{ required: true, message: "Please select an import date" }]}>
                         <DatePicker style={{ width: "100%" }} />

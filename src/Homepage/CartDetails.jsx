@@ -111,10 +111,10 @@ const CartDetails = () => {
             prev.map((item) =>
               item.id === itemId
                 ? {
-                    ...item,
-                    quantity: item.bookQuantity,
-                    total: item.bookQuantity * item.price,
-                  }
+                  ...item,
+                  quantity: item.bookQuantity,
+                  total: item.bookQuantity * item.price,
+                }
                 : item
             )
           );
@@ -168,10 +168,10 @@ const CartDetails = () => {
           prev.map((item) =>
             item.id === itemId
               ? {
-                  ...item,
-                  quantity: item.quantity,
-                  total: item.quantity * item.price,
-                }
+                ...item,
+                quantity: item.quantity,
+                total: item.quantity * item.price,
+              }
               : item
           )
         );
@@ -360,8 +360,8 @@ const CartDetails = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="/logo-capybook.png"
-            alt="Capybook Logo"
+            src="/public/logo-book.png"
+            alt="BookStore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>

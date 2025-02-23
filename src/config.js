@@ -205,28 +205,8 @@ const updateBook = (bookId, formDataToSend) => {
 };
 const deleteBook = (id) => client.delete(`/books/${id}`);
 const fetchBookById = (bookId) => axios.get(`${URLString}v1/books/${bookId}`);
-const fetchSuppliers = () => client.get('v1/suppliers/');
-// Fetch supplier details by ID
-const fetchSupplierDetail = (supID) => {
-    console.log("Fetching supplier detail for ID:", supID);  // Log the supID
-    return client.get(`/v1/suppliers/${supID}`);
-};
 
 
-const addSupplier = (supplier) => client.post('/v1/suppliers/', supplier);
-
-
-// Soft-delete a supplier (hide it) by ID
-const deleteSupplier = (id) => client.delete(`/suppliers/${id}`);
-const updateSupplier = (supID, supplierData) => {
-    return client.put(`/v1/suppliers/${supID}`, supplierData, {
-        headers: {
-            'Content-Type': 'application/json', // Đảm bảo kiểu nội dung là JSON
-        }
-    });
-}
-// Fetch supplier by ID (Duplicate method - either remove or keep as an alias to fetchSupplierDetail)
-const fetchSupplierById = (supID) => client.get(`/v1/suppliers/${supID}`);
 
 const fetchPromotions = () => client.get('v1/promotions/');
 const fetchPromotionsHomepage = () => axios.get(`${URLString}v1/promotions/`);
@@ -474,12 +454,6 @@ export {
     updateImportStock,
     createImportStock,
     deleteImportStock,
-    fetchSupplierById,
-    updateSupplier,
-    fetchSupplierDetail,
-    deleteSupplier,
-    addSupplier,
-    fetchSuppliers,
     fetchBookById,
     deleteBook,
     updateBook,

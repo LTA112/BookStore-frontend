@@ -124,14 +124,14 @@ const DashboardContainer = () => {
       isInventoryVisible =
       isNotificationVisible =
       isStaffVisible =
-        true;
+      true;
   }
   if (scope.includes("SELLER_STAFF")) {
     isPromotionVisible =
       isOrderVisible =
       isCategoryVisible =
       isNotificationVisible =
-        true;
+      true;
   }
   if (scope.includes("WAREHOUSE_STAFF")) {
     isSupplierVisible = true;
@@ -210,7 +210,7 @@ const DashboardContainer = () => {
         style={{ cursor: "pointer" }} // Con trỏ chỉ định có thể bấm vào
       >
         <img
-          src="public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+          src="/public/logo-book.png"
           alt="BookStore Logo"
           className="logo-image"
         />

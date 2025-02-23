@@ -21,7 +21,6 @@ const AddOrder = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
-  const [promotions, setPromotions] = useState([]);
   const [accounts, setAccounts] = useState([]);
   const [selectedBooks, setSelectedBooks] = useState([]);
   const [selectedPromotion, setSelectedPromotion] = useState(null);
@@ -43,13 +42,6 @@ const AddOrder = () => {
         console.error("Error fetching books:", error);
       });
 
-    fetchPromotions()
-      .then((response) => {
-        setPromotions(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching promotions:", error);
-      });
 
     // Fetch danh sách tài khoản
     fetchAccounts()

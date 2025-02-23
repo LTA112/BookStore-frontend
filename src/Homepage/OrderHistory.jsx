@@ -394,14 +394,14 @@ const OrderHistory = () => {
             {orderStatus === 0
               ? "Processing"
               : orderStatus === 1
-              ? "Cancelled"
-              : orderStatus === 2
-              ? "Delivering"
-              : orderStatus === 3
-              ? "Delivered"
-              : orderStatus === 4
-              ? "Returned"
-              : "Unknown"}
+                ? "Cancelled"
+                : orderStatus === 2
+                  ? "Delivering"
+                  : orderStatus === 3
+                    ? "Delivered"
+                    : orderStatus === 4
+                      ? "Returned"
+                      : "Unknown"}
           </Descriptions.Item>
           <Descriptions.Item label="Order Address">
             {orderAddress || "N/A"}
@@ -441,7 +441,7 @@ const OrderHistory = () => {
                   acc + item.quantity * (item.book?.bookPrice || 0),
                 0
               ) *
-                (1 - promotionDiscount / 100)
+              (1 - promotionDiscount / 100)
             )}
           </Descriptions.Item>
         </Descriptions>
@@ -468,7 +468,7 @@ const OrderHistory = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="public/images/z6342581065000_fd22f0bb2accb943186ca745048279cb.jpg"
+            src="/public/logo-book.png"
             alt="BookStore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
@@ -556,14 +556,14 @@ const OrderHistory = () => {
                   {order.orderStatus === 0
                     ? "Processing"
                     : order.orderStatus === 1
-                    ? "Cancelled"
-                    : order.orderStatus === 2
-                    ? "Delivering"
-                    : order.orderStatus === 3
-                    ? "Delivered"
-                    : order.orderStatus === 4
-                    ? "Returned"
-                    : "Unknown"}
+                      ? "Cancelled"
+                      : order.orderStatus === 2
+                        ? "Delivering"
+                        : order.orderStatus === 3
+                          ? "Delivered"
+                          : order.orderStatus === 4
+                            ? "Returned"
+                            : "Unknown"}
                 </p>
 
                 {/* Hiển thị danh sách sách dưới dạng bảng */}
