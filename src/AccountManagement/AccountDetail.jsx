@@ -32,6 +32,7 @@ const AccountDetail = () => {
     // là một hook trong react để thực hiện các tác vụ phụ: gọi API, update DOM hoặc thiết lập WebSocket
     fetchAccountDetail(username) // lấy thông tin tài khoản từ server
       .then((response) => {
+
         setFormData(response.data); //dữ liệu sẽ được gán vào để trả về khi dl trả về thành công
         console.log("data", response.data); // in ra dữ liệu
       })

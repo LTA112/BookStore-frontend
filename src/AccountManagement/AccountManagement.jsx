@@ -239,7 +239,7 @@ const AccountManagement = () => {
 
       <div className="copyright">
         <div>© Copyright {new Date().getFullYear()}</div>
-        <div>Cabybook Management System</div>
+        <div>BookStore Management System</div>
         <div>All Rights Reserved</div>
       </div>
     </div>
