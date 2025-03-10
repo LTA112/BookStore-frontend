@@ -106,7 +106,7 @@ const ProfileManagement = () => {
                     style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
                     onClick={() => navigate('/')} // Navigate to homepage when clicked
                 >
-                    <img src="/public/logo-book.png" alt="BookStore Logo" style={{ height: '40px', marginRight: '20px' }} />
+                    <img src="/logo-BookStore.png" alt="BookStore Logo" style={{ height: '40px', marginRight: '20px' }} />
                     <div style={{ fontSize: '20px', fontWeight: 'bold' }}>BookStore</div>
                 </div>
 
