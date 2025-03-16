@@ -65,7 +65,7 @@ const Login = () => {
       >
         {/* Logo được thêm ở đây */}
         <img
-          src="logo-bookstore.jpg"
+          src="/logo-bookstore2.jpg"
           alt="Bookstore Logo"
           className="login-logo"
         />

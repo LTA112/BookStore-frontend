@@ -51,6 +51,8 @@ import {
   fetchPromotions,
 } from "../config"; // Fetch books and categories from API
 import { decodeJWT } from "../jwtConfig";
+import { Carousel } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const { Header, Footer, Content } = Layout;
 const { Search } = Input;
@@ -454,7 +456,7 @@ const Homepage = () => {
     if (imageUrl && imageUrl.startsWith("/uploads/book_")) {
       return `http://localhost:6789${imageUrl}`; // Add base URL if needed
     }
-    return imageUrl || "logo-bookstore.jpg"; // Default image
+    return imageUrl || "/logo-bookstore2.jpg"; // Default image
   };
 
   return (
@@ -464,7 +466,7 @@ const Homepage = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "#0fa4d6",
+          backgroundColor: "#91c090",
           padding: "0 20px",
           height: "64px",
           color: "#fff",
@@ -475,7 +477,7 @@ const Homepage = () => {
           onClick={() => navigate("/")} // Navigate to homepage when clicked
         >
           <img
-            src="logo-bookstore.jpg"
+            src="/logo-bookstore2.jpg"
             alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
@@ -635,17 +637,32 @@ const Homepage = () => {
           </Col>
         </Card>
         <br></br>
-        <Card>
-          {selectedCategory ? (
-            <>
-              {categories.at(selectedCategory - 1).catName} type:
-              {categories.at(selectedCategory - 1).catDescription}
-            </>
-          ) : (
-            "Welcome to Bookstore!"
-          )}
-        </Card>
-        <br></br>
+        <Carousel className="c">
+          <Carousel.Item interval={3000}>
+            <img
+              className="d-block w-100"
+              src="/images-slides/slide1.jpg"
+              alt="First slide"
+            />
+          </Carousel.Item>
+
+          <Carousel.Item interval={3000}>
+            <img
+              className="d-block w-100"
+              src="/images-slides/slide2.jpg"
+              alt="Second slide"
+            />
+          </Carousel.Item>
+
+          <Carousel.Item interval={3000}>
+            <img
+              className="d-block w-100"
+              src="/images-slides/slide3.png"
+              alt="Third slide"
+            />
+          </Carousel.Item>
+        </Carousel>
+
         {selectedCategory ? (
           <Card>
             <Row gutter={[16, 16]}>
@@ -691,86 +708,7 @@ const Homepage = () => {
           </Card>
         ) : (
           <>
-            {booksByCategory.map(({ category, pages }) => (
-              <Card
-                key={category.catID}
-                style={{
-                  position: "relative",
-                  padding: "20px",
-                  marginBottom: "30px",
-                  backgroundColor: "#fff",
-                }}
-              >
-                <Divider
-                  orientation="center"
-                  style={{
-                    fontSize: "24px",
-                    color: "#FF4500",
-                    borderColor: "#FF4500",
-                    marginBottom: "20px",
-                  }}
-                >
-                  {category.catName}
-                </Divider>
-                <Row gutter={[16, 16]} className={`fade-in`}>
-                  {pages[currentPage[category.catID]]?.map((book) => (
-                    <Col key={book.bookID} xs={24} sm={12} md={8} lg={4} xl={4}>
-                      <Card
-                        hoverable
-                        onClick={() => handleBookClick(book.bookID)}
-                        className="book-card"
-                        cover={
-                          <img
-                            alt={book.bookTitle}
-                            src={normalizeImageUrl(book.image)}
-                            style={{ height: "150px", objectFit: "contain" }}
-                          />
-                        }
-                      >
-                        <Title level={4} className="book-title">
-                          {book.bookTitle}
-                        </Title>
-                        <Title
-                          level={5}
-                          type="secondary"
-                          className="book-price"
-                        >
-                          Author: {book.author}
-                        </Title>
-                        <Title level={5} type="danger" className="book-price">
-                          {`${book.bookPrice.toLocaleString("vi-VN")} đ`}{" "}
-                        </Title>
-                        {book.discount && (
-                          <Tag
-                            color="volcano"
-                            className="book-discount"
-                          >{`${book.discount}% off`}</Tag>
-                        )}
-                        <Title level={5} type="danger">
-                          Quantity: {book.bookQuantity}
-                        </Title>
-                      </Card>
-                    </Col>
-                  ))}
-                </Row>
-                {pages.length > 1 && (
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      marginTop: "10px",
-                    }}
-                  >
-                    <Button
-                      type="primary"
-                      onClick={() => showModal(category, pages.flat())}
-                    >
-                      View more
-                    </Button>
-                  </div>
-                )}
-              </Card>
-            ))}
+            <br></br>
             <Card>
               <Divider
                 orientation="center"
