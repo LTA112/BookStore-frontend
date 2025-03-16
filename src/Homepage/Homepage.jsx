@@ -454,7 +454,7 @@ const Homepage = () => {
     if (imageUrl && imageUrl.startsWith("/uploads/book_")) {
       return `http://localhost:6789${imageUrl}`; // Add base URL if needed
     }
-    return imageUrl || "/logo-capybook.png"; // Default image
+    return imageUrl || "logo-bookstore.jpg"; // Default image
   };
 
   return (
@@ -475,11 +475,11 @@ const Homepage = () => {
           onClick={() => navigate("/")} // Navigate to homepage when clicked
         >
           <img
-            src="/logo-capybook.png"
-            alt="Capybook Logo"
+            src="logo-bookstore.jpg"
+            alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Bookstore</div>
         </div>
 
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -642,7 +642,7 @@ const Homepage = () => {
               {categories.at(selectedCategory - 1).catDescription}
             </>
           ) : (
-            "Welcome to CapyBook!"
+            "Welcome to Bookstore!"
           )}
         </Card>
         <br></br>
@@ -881,7 +881,7 @@ const Homepage = () => {
           width: "100%",
         }}
       >
-        <div>© {new Date().getFullYear()} Capybook Management System</div>
+        <div>© {new Date().getFullYear()} Bookstore Management System</div>
         <div>All Rights Reserved</div>
       </Footer>
     </Layout>

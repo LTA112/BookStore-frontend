@@ -45,7 +45,6 @@ function AddCategory() {
         message.success("Category added successfully");
         navigate("/dashboard/category");
       }
-
     } catch (error) {
       console.error("Error adding category:", error);
       message.error("Failed to add category");
@@ -67,7 +66,7 @@ function AddCategory() {
         <DashboardContainer />
       </div>
 
-      <Card className="dashboard-content" style={{ marginBottom: '50px' }}>
+      <Card className="dashboard-content" style={{ marginBottom: "50px" }}>
         <div className="titlemanagement">
           <div>Add Category</div>
         </div>
@@ -86,8 +85,12 @@ function AddCategory() {
               {
                 validator: (_, value) => {
                   const regex = /^[a-zA-Z0-9\s]+$/; // Allow only letters, numbers, and spaces
-                  if (value.trim() === '' || !regex.test(value)) {
-                    return Promise.reject(new Error('Please enter a valid category name (only letters, numbers, and spaces along with characters)'));
+                  if (value.trim() === "" || !regex.test(value)) {
+                    return Promise.reject(
+                      new Error(
+                        "Please enter a valid category name (only letters, numbers, and spaces along with characters)"
+                      )
+                    );
                   }
                   return Promise.resolve();
                 },
@@ -123,10 +126,10 @@ function AddCategory() {
 
       <div className="copyright">
         <div>© Copyright {new Date().getFullYear()}</div>
-        <div>Capybook Management System</div>
+        <div>Bookstore Management System</div>
         <div>All Rights Reserved</div>
       </div>
-    </div >
+    </div>
   );
 }
 

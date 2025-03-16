@@ -167,7 +167,7 @@ const OrderHistory = () => {
 
   const normalizeImageUrl = (imageUrl) => {
     if (!imageUrl || typeof imageUrl !== "string") {
-      return "/logo-capybook.png"; // Đường dẫn ảnh mặc định
+      return "logo-bookstore.jpg"; // Đường dẫn ảnh mặc định
     }
     if (imageUrl.startsWith("/uploads")) {
       return `http://localhost:6789${imageUrl}`; // Gắn đường dẫn đầy đủ nếu bắt đầu bằng `/uploads`
@@ -468,11 +468,11 @@ const OrderHistory = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="/logo-capybook.png"
-            alt="Capybook Logo"
+            src="logo-bookstore.jpg"
+            alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Bookstore</div>
         </div>
         <Search
           placeholder="Search by Order ID or Book Title"
@@ -664,7 +664,7 @@ const OrderHistory = () => {
           width: "100%",
         }}
       >
-        <div>© {new Date().getFullYear()} Capybook Management System</div>
+        <div>© {new Date().getFullYear()} Bookstore Management System</div>
         <div>All Rights Reserved</div>
       </Footer>
     </Layout>

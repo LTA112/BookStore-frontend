@@ -21,7 +21,7 @@ const AddBookToCart = ({ username, bookId, bookData }) => {
   };
   const normalizeImageUrl = (imageUrl) => {
     if (!imageUrl || typeof imageUrl !== "string") {
-      return "/logo-capybook.png"; // Đường dẫn ảnh mặc định
+      return "logo-bookstore.jpg"; // Đường dẫn ảnh mặc định
     }
     if (imageUrl.startsWith("/uploads")) {
       return `http://localhost:6789${imageUrl}`; // Gắn đường dẫn đầy đủ nếu bắt đầu bằng `/uploads`
@@ -42,13 +42,16 @@ const AddBookToCart = ({ username, bookId, bookData }) => {
 
     try {
       await addBookToCart(username, bookId, quantity);
-      const existingItemIndex = cartItems.findIndex((item) => item.key === bookId);
+      const existingItemIndex = cartItems.findIndex(
+        (item) => item.key === bookId
+      );
 
       if (existingItemIndex >= 0) {
         const updatedItems = [...cartItems];
         updatedItems[existingItemIndex].quantity += quantity;
         updatedItems[existingItemIndex].total =
-          updatedItems[existingItemIndex].quantity * updatedItems[existingItemIndex].price;
+          updatedItems[existingItemIndex].quantity *
+          updatedItems[existingItemIndex].price;
         setCartItems(updatedItems);
       } else {
         const newCartItem = {
@@ -59,7 +62,7 @@ const AddBookToCart = ({ username, bookId, bookData }) => {
           discount: bookData.discount || 0,
           quantity: quantity,
           total: quantity * (bookData.bookPrice || 0),
-          image: bookData.image || "/logo-capybook.png",
+          image: bookData.image || "logo-bookstore.jpg",
         };
         setCartItems((prevItems) => [...prevItems, newCartItem]);
       }
@@ -144,7 +147,14 @@ const AddBookToCart = ({ username, bookId, bookData }) => {
 
   return (
     <div>
-      <div style={{ marginTop: "20px", display: "flex", gap: "10px", alignItems: "center" }}>
+      <div
+        style={{
+          marginTop: "20px",
+          display: "flex",
+          gap: "10px",
+          alignItems: "center",
+        }}
+      >
         <Button
           type="primary"
           style={{
@@ -158,13 +168,14 @@ const AddBookToCart = ({ username, bookId, bookData }) => {
           }}
           onClick={handleCheckout}
           disabled={isDisabled} // Vô hiệu hóa nếu hết sách hoặc trạng thái = 0
-
         >
           Buy now
         </Button>
 
         <div>
-          <div style={{ fontWeight: "bold", marginBottom: "5px" }}>Quantity</div>
+          <div style={{ fontWeight: "bold", marginBottom: "5px" }}>
+            Quantity
+          </div>
           <InputNumber
             min={1}
             max={bookData.bookQuantity}
@@ -224,7 +235,10 @@ const AddBookToCart = ({ username, bookId, bookData }) => {
               </Table.Summary.Cell>
               <Table.Summary.Cell>
                 <Typography.Text strong>
-                  {cartItems.reduce((acc, item) => acc + item.total, 0).toLocaleString()}đ
+                  {cartItems
+                    .reduce((acc, item) => acc + item.total, 0)
+                    .toLocaleString()}
+                  đ
                 </Typography.Text>
               </Table.Summary.Cell>
             </Table.Summary.Row>
@@ -238,7 +252,11 @@ const AddBookToCart = ({ username, bookId, bookData }) => {
           }}
         >
           <Typography.Text strong style={{ fontSize: "16px" }}>
-            Cart Subtotal: {cartItems.reduce((acc, item) => acc + item.total, 0).toLocaleString()}đ
+            Cart Subtotal:{" "}
+            {cartItems
+              .reduce((acc, item) => acc + item.total, 0)
+              .toLocaleString()}
+            đ
           </Typography.Text>
           <Button onClick={handleShowCart}>Go to Cart</Button>
         </div>

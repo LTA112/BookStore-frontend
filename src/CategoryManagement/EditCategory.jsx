@@ -27,7 +27,7 @@ const EditCategory = () => {
       try {
         const response = await fetchCategoryDetail(catID);
         if (response.data.catStatus === 0) {
-          navigate("/404")
+          navigate("/404");
           return;
         }
         const category = response.data;
@@ -75,7 +75,7 @@ const EditCategory = () => {
         <DashboardContainer />
       </div>
 
-      <Card className="dashboard-content" style={{ marginBottom: '50px' }}>
+      <Card className="dashboard-content" style={{ marginBottom: "50px" }}>
         <div className="titlemanagement">
           <div>Edit Category</div>
         </div>
@@ -93,8 +93,12 @@ const EditCategory = () => {
               {
                 validator: (_, value) => {
                   const regex = /^[a-zA-Z0-9\s]+$/; // Allow only letters, numbers, and spaces
-                  if (value.trim() === '' || !regex.test(value)) {
-                    return Promise.reject(new Error('Please enter a valid category name (only letters, numbers, and spaces along with characters)'));
+                  if (value.trim() === "" || !regex.test(value)) {
+                    return Promise.reject(
+                      new Error(
+                        "Please enter a valid category name (only letters, numbers, and spaces along with characters)"
+                      )
+                    );
                   }
                   return Promise.resolve();
                 },
@@ -131,10 +135,10 @@ const EditCategory = () => {
 
       <div className="copyright">
         <div>© {new Date().getFullYear()}</div>
-        <div>Capybook Management System</div>
+        <div>Bookstore Management System</div>
         <div>All Rights Reserved</div>
       </div>
-    </div >
+    </div>
   );
 };
 

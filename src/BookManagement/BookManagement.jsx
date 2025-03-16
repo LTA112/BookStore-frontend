@@ -1,213 +1,209 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './BookManagement.css'; // Import CSS for styling
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./BookManagement.css"; // Import CSS for styling
 import DashboardContainer from "../DashBoard/DashBoardContainer.jsx";
-import { fetchBooks, updateBook, fetchBookById, searchBook } from '../config'; // Thêm searchBook
-import { Space, Table, Tag, Button, Input, message } from 'antd';
+import { fetchBooks, updateBook, fetchBookById, searchBook } from "../config"; // Thêm searchBook
+import { Space, Table, Tag, Button, Input, message } from "antd";
 import {
-    DeleteOutlined,
-    EditOutlined,
-    InfoCircleOutlined,
-} from '@ant-design/icons';
+  DeleteOutlined,
+  EditOutlined,
+  InfoCircleOutlined,
+} from "@ant-design/icons";
 import { checkAdminRole, checkWarehouseStaffRole } from "../jwtConfig";
 const { Search } = Input;
 
 function BookManagement() {
-    const navigate = useNavigate();
-    const [books, setBooks] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-    const [searchTerm, setSearchTerm] = useState(''); // Search term state
-    const [isSearching, setIsSearching] = useState(false);
+  const navigate = useNavigate();
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); // Search term state
+  const [isSearching, setIsSearching] = useState(false);
 
-    useEffect(() => {
-        if (!checkWarehouseStaffRole() && !checkAdminRole()) {
-            return navigate("/404");
-        }
-        const loadBooks = async () => {
-            setLoading(true);
-            try {
-                const response = await fetchBooks();
-                console.log('Fetched books:', response.data); // Log danh sách sách nhận được
-                setBooks(response.data);
-                setError('');
-            } catch (error) {
-                console.error('Error fetching books:', error);
-                setError('Failed to fetch books');
-                message.error('Failed to fetch books');
-            }
-            setLoading(false);
+  useEffect(() => {
+    if (!checkWarehouseStaffRole() && !checkAdminRole()) {
+      return navigate("/404");
+    }
+    const loadBooks = async () => {
+      setLoading(true);
+      try {
+        const response = await fetchBooks();
+        console.log("Fetched books:", response.data); // Log danh sách sách nhận được
+        setBooks(response.data);
+        setError("");
+      } catch (error) {
+        console.error("Error fetching books:", error);
+        setError("Failed to fetch books");
+        message.error("Failed to fetch books");
+      }
+      setLoading(false);
+    };
+
+    loadBooks();
+  }, []);
+
+  const handleSearch = async (value) => {
+    setIsSearching(true);
+    setLoading(true);
+    try {
+      const response = await searchBook(value); // Gọi API searchBook
+      console.log("Search results:", response.data);
+      setBooks(response.data); // Cập nhật danh sách sách với kết quả tìm kiếm
+      setError("");
+    } catch (error) {
+      console.error("Error searching books:", error);
+      setError("Failed to search books");
+      message.error("Failed to search books");
+    }
+    setLoading(false);
+    setIsSearching(false);
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to deactivate this book?")) {
+      try {
+        const currentBookData = await fetchBookById(id);
+
+        const updatedBookData = {
+          ...currentBookData.data,
+          bookStatus: 0, // Chỉ thay đổi trạng thái
+          bookCategories: [], // Đảm bảo không gửi các danh sách liên kết
         };
 
-        loadBooks();
-    }, []);
+        const formDataToSend = new FormData();
+        formDataToSend.append("book", JSON.stringify(updatedBookData));
 
-    const handleSearch = async (value) => {
-        setIsSearching(true);
-        setLoading(true);
-        try {
-            const response = await searchBook(value); // Gọi API searchBook
-            console.log('Search results:', response.data);
-            setBooks(response.data); // Cập nhật danh sách sách với kết quả tìm kiếm
-            setError('');
-        } catch (error) {
-            console.error('Error searching books:', error);
-            setError('Failed to search books');
-            message.error('Failed to search books');
-        }
-        setLoading(false);
-        setIsSearching(false);
-    };
+        // Không thêm `image` vào formData
+        await updateBook(id, formDataToSend);
+        setBooks(
+          books.map((book) =>
+            book.bookID === id ? { ...book, bookStatus: 0 } : book
+          )
+        );
+        message.success("Book deactivated successfully");
+      } catch (error) {
+        console.error("Error deactivating book:", error);
+        message.error("Failed to deactivate book");
+      }
+    }
+  };
 
-    const handleDelete = async (id) => {
-        if (window.confirm('Are you sure you want to deactivate this book?')) {
-            try {
-                const currentBookData = await fetchBookById(id);
+  const goToAddBook = () => {
+    navigate("/dashboard/books/add");
+  };
 
-                const updatedBookData = {
-                    ...currentBookData.data,
-                    bookStatus: 0, // Chỉ thay đổi trạng thái
-                    bookCategories: [], // Đảm bảo không gửi các danh sách liên kết
-                };
+  const goToEditBook = (bookId) => {
+    navigate(`/dashboard/books/edit/${bookId}`);
+  };
 
-                const formDataToSend = new FormData();
-                formDataToSend.append('book', JSON.stringify(updatedBookData));
+  const goToBookDetail = (bookId) => {
+    navigate(`/dashboard/books/detail/${bookId}`);
+  };
 
-                // Không thêm `image` vào formData
-                await updateBook(id, formDataToSend);
-                setBooks(
-                    books.map((book) =>
-                        book.bookID === id ? { ...book, bookStatus: 0 } : book
-                    )
-                );
-                message.success('Book deactivated successfully');
-            } catch (error) {
-                console.error('Error deactivating book:', error);
-                message.error('Failed to deactivate book');
-            }
-        }
-    };
+  const columns = [
+    {
+      title: "Book ID",
+      dataIndex: "bookID",
+      key: "bookID",
+    },
+    {
+      title: "Title",
+      dataIndex: "bookTitle",
+      key: "bookTitle",
+    },
+    {
+      title: "Author",
+      dataIndex: "author",
+      key: "author",
+    },
+    {
+      title: "Translator",
+      dataIndex: "translator",
+      key: "translator",
+    },
+    {
+      title: "Quantity",
+      dataIndex: "bookQuantity",
+      key: "bookQuantity",
+      render: (quantity) =>
+        `${new Intl.NumberFormat("en-US").format(quantity)}`,
+    },
+    {
+      title: "Price",
+      dataIndex: "bookPrice",
+      key: "bookPrice",
+      render: (price) => `${new Intl.NumberFormat("en-US").format(price)} VND`,
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => (
+        <Space size="middle">
+          <Button type="link" onClick={() => goToBookDetail(record.bookID)}>
+            <InfoCircleOutlined title="Detail" />
+          </Button>
+          {record.bookStatus === 1 && (
+            <>
+              <Button
+                type="link"
+                onClick={() => goToEditBook(record.bookID)}
+                className="yellow-button"
+              >
+                <EditOutlined title="Edit" />
+              </Button>
 
-    const goToAddBook = () => {
-        navigate('/dashboard/books/add');
-    };
+              <Button
+                type="link"
+                danger
+                onClick={() => handleDelete(record.bookID)}
+              >
+                <DeleteOutlined title="Delete" />
+              </Button>
+            </>
+          )}
+        </Space>
+      ),
+    },
+  ];
 
-    const goToEditBook = (bookId) => {
-        navigate(`/dashboard/books/edit/${bookId}`);
-    };
+  if (loading) return <p>Loading books...</p>;
+  if (error) return <p>Error: {error}</p>;
 
-    const goToBookDetail = (bookId) => {
-        navigate(`/dashboard/books/detail/${bookId}`);
-    };
+  return (
+    <div className="main-container">
+      <div className="dashboard-container">
+        <DashboardContainer />
+      </div>
 
-    const columns = [
-        {
-            title: 'Book ID',
-            dataIndex: 'bookID',
-            key: 'bookID',
-        },
-        {
-            title: 'Title',
-            dataIndex: 'bookTitle',
-            key: 'bookTitle',
-        },
-        {
-            title: 'Author',
-            dataIndex: 'author',
-            key: 'author',
-        },
-        {
-            title: 'Translator',
-            dataIndex: 'translator',
-            key: 'translator',
-        },
-        {
-            title: 'Quantity',
-            dataIndex: 'bookQuantity',
-            key: 'bookQuantity',
-            render: (quantity) => `${new Intl.NumberFormat("en-US").format(quantity)}`
-        },
-        {
-            title: 'Price',
-            dataIndex: 'bookPrice',
-            key: 'bookPrice',
-            render: (price) => `${new Intl.NumberFormat("en-US").format(price)} VND`,
-        },
-        {
-            title: 'Action',
-            key: 'action',
-            render: (_, record) => (
-                <Space size="middle">
-                    <Button
-                        type="link"
-                        onClick={() => goToBookDetail(record.bookID)}
-                    >
-                        <InfoCircleOutlined title="Detail" />
-                    </Button>
-                    {record.bookStatus === 1 && (
-                        <>
-                            <Button
-                                type="link"
-                                onClick={() => goToEditBook(record.bookID)}
-                                className="yellow-button"
-                            >
-                                <EditOutlined title="Edit" />
-                            </Button>
-
-                            <Button
-                                type="link"
-                                danger
-                                onClick={() => handleDelete(record.bookID)}
-                            >
-                                <DeleteOutlined title="Delete" />
-                            </Button>
-                        </>
-                    )}
-                </Space>
-            ),
-        },
-    ];
-
-    if (loading) return <p>Loading books...</p>;
-    if (error) return <p>Error: {error}</p>;
-
-    return (
-        <div className="main-container">
-            <div className="dashboard-container">
-                <DashboardContainer />
-            </div>
-
-            <div className="dashboard-content">
-                <h1 className="titlemanagement">
-                    Book Management
-                </h1>
-                <div className="action-container">
-                    <Button type="primary" onClick={goToAddBook}>
-                        Add book
-                    </Button>
-                    <Search
-                        placeholder="Search by title or author"
-                        className="search-input"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        onSearch={(value) => handleSearch(value)} // Gọi API search khi nhấn Enter
-                        style={{ width: 300, marginLeft: '20px' }}
-                        loading={isSearching} // Hiển thị trạng thái loading khi tìm kiếm
-                    />
-                </div>
-                <Table
-                    columns={columns}
-                    dataSource={books.filter((book) => book.bookStatus === 1)}// Dữ liệu từ API search hoặc tất cả sách
-                    rowKey={(record) => record.bookID}
-                />
-            </div>
-            <div className="copyright">
-                <div>© Copyright {new Date().getFullYear()}</div>
-                <div>Cabybook Management System</div>
-                <div>All Rights Reserved</div>
-            </div>
+      <div className="dashboard-content">
+        <h1 className="titlemanagement">Book Management</h1>
+        <div className="action-container">
+          <Button type="primary" onClick={goToAddBook}>
+            Add book
+          </Button>
+          <Search
+            placeholder="Search by title or author"
+            className="search-input"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onSearch={(value) => handleSearch(value)} // Gọi API search khi nhấn Enter
+            style={{ width: 300, marginLeft: "20px" }}
+            loading={isSearching} // Hiển thị trạng thái loading khi tìm kiếm
+          />
         </div>
-    );
+        <Table
+          columns={columns}
+          dataSource={books.filter((book) => book.bookStatus === 1)} // Dữ liệu từ API search hoặc tất cả sách
+          rowKey={(record) => record.bookID}
+        />
+      </div>
+      <div className="copyright">
+        <div>© Copyright {new Date().getFullYear()}</div>
+        <div>Bookstore Management System</div>
+        <div>All Rights Reserved</div>
+      </div>
+    </div>
+  );
 }
 
 export default BookManagement;

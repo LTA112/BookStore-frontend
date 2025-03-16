@@ -78,7 +78,7 @@ const CartDetails = () => {
 
   const normalizeImageUrl = (imageUrl) => {
     if (!imageUrl || typeof imageUrl !== "string") {
-      return "/logo-capybook.png"; // Đường dẫn ảnh mặc định
+      return "logo-bookstore.jpg"; // Đường dẫn ảnh mặc định
     }
     if (imageUrl.startsWith("/uploads")) {
       return `http://localhost:6789${imageUrl}`; // Gắn đường dẫn đầy đủ nếu bắt đầu bằng `/uploads`
@@ -111,10 +111,10 @@ const CartDetails = () => {
             prev.map((item) =>
               item.id === itemId
                 ? {
-                  ...item,
-                  quantity: item.bookQuantity,
-                  total: item.bookQuantity * item.price,
-                }
+                    ...item,
+                    quantity: item.bookQuantity,
+                    total: item.bookQuantity * item.price,
+                  }
                 : item
             )
           );
@@ -168,10 +168,10 @@ const CartDetails = () => {
           prev.map((item) =>
             item.id === itemId
               ? {
-                ...item,
-                quantity: item.quantity,
-                total: item.quantity * item.price,
-              }
+                  ...item,
+                  quantity: item.quantity,
+                  total: item.quantity * item.price,
+                }
               : item
           )
         );
@@ -360,11 +360,11 @@ const CartDetails = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="/logo-capybook.png"
-            alt="Capybook Logo"
+            src="logo-bookstore.jpg"
+            alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Bookstore</div>
         </div>
 
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -404,7 +404,7 @@ const CartDetails = () => {
         <Card
           title={
             <div>
-              Shopping Cart - CapyBook{" "}
+              Shopping Cart - Bookstore{" "}
               <Text type="secondary" style={{ fontSize: "14px" }}>
                 ({countValidItems()} products)
               </Text>
@@ -414,7 +414,6 @@ const CartDetails = () => {
         >
           {cartItems.length === 0 ? (
             <div style={{ textAlign: "center", padding: "20px" }}>
-
               <Text style={{ fontSize: "18px", fontWeight: "bold" }}>
                 Your Cart is empty{" "}
               </Text>
@@ -720,7 +719,7 @@ const CartDetails = () => {
           width: "100%",
         }}
       >
-        <div>© {new Date().getFullYear()} Capybook Management System</div>
+        <div>© {new Date().getFullYear()} Bookstore Management System</div>
         <div>All Rights Reserved</div>
       </Footer>
     </Layout>

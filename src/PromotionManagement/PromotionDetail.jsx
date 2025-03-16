@@ -108,7 +108,7 @@ const PromotionDetail = () => {
 
       <div className="copyright">
         <div>© Copyright {new Date().getFullYear()}</div>
-        <div>Capybook Management System</div>
+        <div>CBookstore Management System</div>
         <div>All Rights Reserved</div>
       </div>
     </div>

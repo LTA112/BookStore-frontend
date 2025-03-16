@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Space, Table, Button, Input, message, Modal } from "antd";
-import {
-  fetchCategories,
-  searchCategories,
-  deleteCategory
-} from "../config";
+import { fetchCategories, searchCategories, deleteCategory } from "../config";
 import DashboardContainer from "../DashBoard/DashBoardContainer.jsx";
 import {
   DeleteOutlined,
@@ -217,7 +213,7 @@ const CategoryManagement = () => {
 
       <div className="copyright">
         <div>© {new Date().getFullYear()}</div>
-        <div>Capybook Management System</div>
+        <div>Bookstore Management System</div>
         <div>All Rights Reserved</div>
       </div>
     </div>

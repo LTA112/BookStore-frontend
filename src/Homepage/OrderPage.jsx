@@ -150,7 +150,7 @@ const OrderPage = () => {
 
   const normalizeImageUrl = (imageUrl) => {
     if (!imageUrl || typeof imageUrl !== "string") {
-      return "/logo-capybook.png"; // Đường dẫn ảnh mặc định
+      return "logo-bookstore.jpg"; // Đường dẫn ảnh mặc định
     }
     if (imageUrl.startsWith("/uploads")) {
       return `http://localhost:6789${imageUrl}`; // Gắn đường dẫn đầy đủ nếu bắt đầu bằng `/uploads`
@@ -283,11 +283,11 @@ const OrderPage = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="/logo-capybook.png"
-            alt="Capybook Logo"
+            src="logo-bookstore.jpg"
+            alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Bookstore</div>
         </div>
       </Header>
       <Content style={{ padding: "20px", backgroundColor: "#f0f2f5" }}>
@@ -303,13 +303,13 @@ const OrderPage = () => {
             }}
             onMouseEnter={
               (e) =>
-              (e.currentTarget.style.boxShadow =
-                "0 6px 12px rgba(0, 123, 255, 0.5)") // Bóng xanh khi hover
+                (e.currentTarget.style.boxShadow =
+                  "0 6px 12px rgba(0, 123, 255, 0.5)") // Bóng xanh khi hover
             }
             onMouseLeave={
               (e) =>
-              (e.currentTarget.style.boxShadow =
-                "0 4px 8px rgba(135, 206, 235, 0.5)") // Quay lại bóng mặc định
+                (e.currentTarget.style.boxShadow =
+                  "0 4px 8px rgba(135, 206, 235, 0.5)") // Quay lại bóng mặc định
             }
           >
             <div>
@@ -372,13 +372,13 @@ const OrderPage = () => {
             }}
             onMouseEnter={
               (e) =>
-              (e.currentTarget.style.boxShadow =
-                "0 6px 12px rgba(0, 123, 255, 0.5)") // Bóng xanh khi hover
+                (e.currentTarget.style.boxShadow =
+                  "0 6px 12px rgba(0, 123, 255, 0.5)") // Bóng xanh khi hover
             }
             onMouseLeave={
               (e) =>
-              (e.currentTarget.style.boxShadow =
-                "0 4px 8px rgba(135, 206, 235, 0.5)") // Quay lại bóng mặc định
+                (e.currentTarget.style.boxShadow =
+                  "0 4px 8px rgba(135, 206, 235, 0.5)") // Quay lại bóng mặc định
             }
           >
             <Table
@@ -443,13 +443,13 @@ const OrderPage = () => {
             }}
             onMouseEnter={
               (e) =>
-              (e.currentTarget.style.boxShadow =
-                "0 6px 12px rgba(0, 123, 255, 0.5)") // Bóng xanh khi hover
+                (e.currentTarget.style.boxShadow =
+                  "0 6px 12px rgba(0, 123, 255, 0.5)") // Bóng xanh khi hover
             }
             onMouseLeave={
               (e) =>
-              (e.currentTarget.style.boxShadow =
-                "0 4px 8px rgba(135, 206, 235, 0.5)") // Quay lại bóng mặc định
+                (e.currentTarget.style.boxShadow =
+                  "0 4px 8px rgba(135, 206, 235, 0.5)") // Quay lại bóng mặc định
             }
           >
             <Row
@@ -519,7 +519,7 @@ const OrderPage = () => {
           width: "100%",
         }}
       >
-        <div>© {new Date().getFullYear()} Capybook Management System</div>
+        <div>© {new Date().getFullYear()} Bookstore Management System</div>
         <div>All Rights Reserved</div>
       </Footer>
     </Layout>

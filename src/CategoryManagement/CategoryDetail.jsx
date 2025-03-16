@@ -25,11 +25,11 @@ function CategoryDetail() {
         const response = await fetchCategoryDetail(catID);
 
         if (response === undefined) {
-          navigate("/404")
+          navigate("/404");
           return;
         }
         if (response.data.catStatus === 0) {
-          navigate("/404")
+          navigate("/404");
           return;
         }
         const category = response.data;
@@ -57,7 +57,7 @@ function CategoryDetail() {
         <DashboardContainer />
       </div>
 
-      <Card className="dashboard-content" style={{ marginBottom: '50px' }}>
+      <Card className="dashboard-content" style={{ marginBottom: "50px" }}>
         <div className="titlemanagement">
           <div>Category Details</div>
         </div>
@@ -90,7 +90,7 @@ function CategoryDetail() {
 
       <div className="copyright">
         <div>© {new Date().getFullYear()}</div>
-        <div>Capybook Management System</div>
+        <div>Bookstore Management System</div>
         <div>All Rights Reserved</div>
       </div>
     </div>

@@ -295,7 +295,7 @@ const AddPromotion = () => {
 
       <div className="copyright">
         <div>© {new Date().getFullYear()}</div>
-        <div>Capybook Management System</div>
+        <div>Bookstore Management System</div>
         <div>All Rights Reserved</div>
       </div>
     </div>

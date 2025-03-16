@@ -57,7 +57,7 @@ const PaymentSuccessPage = () => {
           price: item.bookID?.bookPrice || 0,
           quantity: item.quantity,
           total: (item.bookID?.bookPrice || 0) * (item.quantity || 1),
-          image: item.bookID?.image || "/logo-capybook.png",
+          image: item.bookID?.image || "logo-bookstore.jpg",
           bookStatus: item.bookID?.bookStatus,
           bookQuantity: item.bookID?.bookQuantity || 0,
         }));
@@ -235,11 +235,13 @@ const PaymentSuccessPage = () => {
             onClick={() => navigate("/")}
           >
             <img
-              src="/logo-capybook.png"
-              alt="Capybook Logo"
+              src="logo-bookstore.jpg"
+              alt="Bookstore Logo"
               style={{ height: "40px", marginRight: "20px" }}
             />
-            <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
+            <div style={{ fontSize: "20px", fontWeight: "bold" }}>
+              Bookstore
+            </div>
           </div>
         </Header>
         <Content style={{ textAlign: "center", marginTop: "20%" }}>
@@ -253,7 +255,7 @@ const PaymentSuccessPage = () => {
             padding: "10px 0",
           }}
         >
-          © {new Date().getFullYear()} Capybook Management System
+          © {new Date().getFullYear()} Bookstore Management System
         </Footer>
       </Layout>
     );
@@ -276,11 +278,11 @@ const PaymentSuccessPage = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="/logo-capybook.png"
-            alt="Capybook Logo"
+            src="logo-bookstore.jpg"
+            alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
-          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Capybook</div>
+          <div style={{ fontSize: "20px", fontWeight: "bold" }}>Bookstore</div>
         </div>
       </Header>
       <Content style={{ padding: "20px", minHeight: "600px" }}>
@@ -341,7 +343,10 @@ const PaymentSuccessPage = () => {
                 >
                   Return Homepage
                 </Button>,
-                <Button key="support" onClick={() => navigate("/cart/ViewDetail")}>
+                <Button
+                  key="support"
+                  onClick={() => navigate("/cart/ViewDetail")}
+                >
                   Return Shoping Cart
                 </Button>,
               ]}
@@ -357,7 +362,7 @@ const PaymentSuccessPage = () => {
           padding: "10px 0",
         }}
       >
-        <div>© {new Date().getFullYear()} Capybook Management System</div>
+        <div>© {new Date().getFullYear()} Bookstore Management System</div>
         <div>All Rights Reserved</div>
       </Footer>
     </Layout>
