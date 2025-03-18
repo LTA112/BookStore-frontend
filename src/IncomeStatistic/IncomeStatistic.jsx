@@ -17,9 +17,6 @@ import {
   checkSellerStaffRole,
 } from "../jwtConfig";
 
-
-
-
 const RevenueReport = () => {
   const [loading, setLoading] = useState(true);
   const [chartData, setChartData] = useState([]);
@@ -40,7 +37,7 @@ const RevenueReport = () => {
       isbn: record.isbn || "N/A",
       bookDescription: record.bookDescription || "N/A",
       bookPrice: record.bookPrice,
-      image: record.image || "",
+      image: record.image || "N/A",
     };
     console.log("Record: ", record);
     setSelectedBook(book);
@@ -82,7 +79,7 @@ const RevenueReport = () => {
               (sum, detail) =>
                 sum +
                 (detail.iSDQuantity || 0) *
-                (parseFloat(detail.importPrice) || 0),
+                  (parseFloat(detail.importPrice) || 0),
               0
             );
             return {
@@ -268,7 +265,10 @@ const RevenueReport = () => {
               publicationYear: detail.bookID.publicationYear || "N/A", // Năm xuất bản
               isbn: detail.bookID.isbn || "N/A", // Mã ISBN
               bookDescription: detail.bookID.bookDescription || "N/A", // Mô tả sách
-              image: detail.bookID.image || "", // Hình ảnh
+              image: detail.bookID.image
+                ? `http://localhost:6789${detail.bookID.image}`
+                : "N/A",
+              // Hình ảnh
               iSDQuantity: detail.iSDQuantity || 0, // Số lượng nhập
               bookPrice: detail.bookID.bookPrice || 0,
               importPrice: detail.importPrice || 0, // Giá nhập
@@ -295,7 +295,9 @@ const RevenueReport = () => {
       "[]"
     )
   );
-  const sortedData = filteredData.sort((a, b) => new Date(a.date) - new Date(b.date));
+  const sortedData = filteredData.sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
 
   console.log("Dữ liệu cho biểu đồ:", filteredData);
 
@@ -472,7 +474,6 @@ const RevenueReport = () => {
               height={400}
               tooltip={(value) => `${value.toLocaleString()} VND`} // Hiển thị giá trị qua tooltip
             />
-
           </div>
         </div>
 
@@ -548,8 +549,8 @@ const RevenueReport = () => {
                 <strong>Price:</strong>{" "}
                 {selectedBook.bookPrice
                   ? `${new Intl.NumberFormat("en-US").format(
-                    selectedBook.bookPrice
-                  )} VND`
+                      selectedBook.bookPrice
+                    )} VND`
                   : "N/A"}
               </p>
             </div>

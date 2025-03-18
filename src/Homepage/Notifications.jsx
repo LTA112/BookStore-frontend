@@ -149,7 +149,7 @@ const Notifications = () => {
           onClick={() => navigate("/")} // Navigate to homepage when clicked
         >
           <img
-            src="logo-bookstore.jpg"
+            src="logo-bookstore2.png"
             alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />

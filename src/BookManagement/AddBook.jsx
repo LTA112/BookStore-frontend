@@ -194,7 +194,7 @@ function AddBook() {
               },
             ]}
           >
-            <Input placeholder="Nhut Anh 123" />
+            <Input placeholder="Nguyen Van A" />
           </Form.Item>
 
           <Form.Item
@@ -244,7 +244,7 @@ function AddBook() {
               },
             ]}
           >
-            <Input placeholder="Cong Khanh 123" />
+            <Input placeholder="Nguyen Van A" />
           </Form.Item>
 
           <Form.Item

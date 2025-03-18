@@ -210,7 +210,7 @@ const DashboardContainer = () => {
         style={{ cursor: "pointer" }} // Con trỏ chỉ định có thể bấm vào
       >
         <img
-          src="/logo-bookstore2.jpg"
+          src="/logo-bookstore2.png"
           alt="Bookstore Logo"
           className="logo-image"
         />

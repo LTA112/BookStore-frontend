@@ -466,7 +466,7 @@ const Homepage = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "#91c090",
+          backgroundColor: "#8ebe8b",
           padding: "0 20px",
           height: "64px",
           color: "#fff",
@@ -477,7 +477,7 @@ const Homepage = () => {
           onClick={() => navigate("/")} // Navigate to homepage when clicked
         >
           <img
-            src="/logo-bookstore2.jpg"
+            src="/logo-bookstore2.png"
             alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
@@ -578,6 +578,32 @@ const Homepage = () => {
         </div>
       </Header>
 
+      <Carousel className="c">
+        <Carousel.Item interval={3000}>
+          <img
+            className="d-block w-100"
+            src="/images-slides/slide1.jpg"
+            alt="First slide"
+          />
+        </Carousel.Item>
+
+        <Carousel.Item interval={3000}>
+          <img
+            className="d-block w-100"
+            src="/images-slides/slide2.jpg"
+            alt="Second slide"
+          />
+        </Carousel.Item>
+
+        <Carousel.Item interval={3000}>
+          <img
+            className="d-block w-100"
+            src="/images-slides/slide3.png"
+            alt="Third slide"
+          />
+        </Carousel.Item>
+      </Carousel>
+
       <Content
         style={{
           minHeight: "600px",
@@ -636,32 +662,6 @@ const Homepage = () => {
             </Row>
           </Col>
         </Card>
-        <br></br>
-        <Carousel className="c">
-          <Carousel.Item interval={3000}>
-            <img
-              className="d-block w-100"
-              src="/images-slides/slide1.jpg"
-              alt="First slide"
-            />
-          </Carousel.Item>
-
-          <Carousel.Item interval={3000}>
-            <img
-              className="d-block w-100"
-              src="/images-slides/slide2.jpg"
-              alt="Second slide"
-            />
-          </Carousel.Item>
-
-          <Carousel.Item interval={3000}>
-            <img
-              className="d-block w-100"
-              src="/images-slides/slide3.png"
-              alt="Third slide"
-            />
-          </Carousel.Item>
-        </Carousel>
 
         {selectedCategory ? (
           <Card>
