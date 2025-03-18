@@ -219,13 +219,15 @@ const PaymentSuccessPage = () => {
 
   if (loading) {
     return (
-      <Layout>
+      <Layout
+        style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+      >
         <Header
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            backgroundColor: "#0fa4d6",
+            backgroundColor: "#8ebe8b",
             padding: "0 20px",
             color: "#fff",
           }}
@@ -235,7 +237,7 @@ const PaymentSuccessPage = () => {
             onClick={() => navigate("/")}
           >
             <img
-              src="logo-bookstore.jpg"
+              src="/logo-bookstore2.png"
               alt="Bookstore Logo"
               style={{ height: "40px", marginRight: "20px" }}
             />
@@ -262,13 +264,15 @@ const PaymentSuccessPage = () => {
   }
 
   return (
-    <Layout>
+    <Layout
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
       <Header
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor: "#0fa4d6",
+          backgroundColor: "#8ebe8b",
           padding: "0 20px",
           color: "#fff",
         }}
@@ -278,7 +282,7 @@ const PaymentSuccessPage = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="logo-bookstore.jpg"
+            src="/logo-bookstore2.png"
             alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
@@ -360,6 +364,9 @@ const PaymentSuccessPage = () => {
           color: "#fff",
           backgroundColor: "#343a40",
           padding: "10px 0",
+          bottom: 0,
+          position: "absolute",
+          width: "100%",
         }}
       >
         <div>© {new Date().getFullYear()} Bookstore Management System</div>

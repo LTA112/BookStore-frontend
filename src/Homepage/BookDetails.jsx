@@ -184,7 +184,7 @@ const BookDetails = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "#0fa4d6",
+          backgroundColor: "#8ebe8b",
           padding: "0 20px",
           height: "64px",
           color: "#fff",
@@ -195,7 +195,7 @@ const BookDetails = () => {
           onClick={() => navigate("/")} // Navigate to homepage when clicked
         >
           <img
-            src="logo-bookstore.jpg"
+            src="/logo-bookstore2.png"
             alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
@@ -260,20 +260,20 @@ const BookDetails = () => {
         >
           <div style={{ display: "flex", gap: "20px" }}>
             {/* Left section: Image gallery */}
-            <div style={{ flex: "1" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <Image
-                width={300}
+                width={400}
+                height={500}
                 src={imagePreview || "logo-bookstore.jpg"}
                 alt={bookData.bookTitle}
                 style={{ borderRadius: "8px" }}
               />
-              <div style={{ marginTop: "20px", display: "flex", gap: "10px" }}>
-                <Image
-                  width={60}
-                  src={imagePreview || "logo-bookstore.jpg"}
-                  style={{ cursor: "pointer" }}
-                />
-              </div>
               <div
                 style={{
                   marginTop: "20px",
@@ -350,8 +350,8 @@ const BookDetails = () => {
                 <h3 style={{ fontWeight: "bold", marginBottom: "10px" }}>
                   Shipping Information
                 </h3>
-                <div>Shipping to: Ho Chi Minh City</div>
-                <div>Estimated delivery: Oct 26</div>
+                <div>Shipping to: Can tho city</div>
+                <div>Estimated delivery: 2 or more days</div>
               </div>
 
               <div style={{ marginBottom: "20px" }}>

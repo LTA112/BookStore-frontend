@@ -78,7 +78,7 @@ const CartDetails = () => {
 
   const normalizeImageUrl = (imageUrl) => {
     if (!imageUrl || typeof imageUrl !== "string") {
-      return "logo-bookstore.jpg"; // Đường dẫn ảnh mặc định
+      return "logo-bookstore2.png"; // Đường dẫn ảnh mặc định
     }
     if (imageUrl.startsWith("/uploads")) {
       return `http://localhost:6789${imageUrl}`; // Gắn đường dẫn đầy đủ nếu bắt đầu bằng `/uploads`
@@ -343,13 +343,15 @@ const CartDetails = () => {
     } else navigate("/auth/login");
   };
   return (
-    <Layout>
+    <Layout
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
       <Header
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor: "#0fa4d6",
+          backgroundColor: "#8ebe8b",
           padding: "0 20px",
           height: "64px",
           color: "#fff",
@@ -360,7 +362,7 @@ const CartDetails = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="logo-bookstore.jpg"
+            src="/logo-bookstore2.png"
             alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />
@@ -431,7 +433,7 @@ const CartDetails = () => {
               <Row
                 align="middle"
                 style={{
-                  backgroundColor: "#1E90FF",
+                  backgroundColor: "#143D60",
                   padding: "10px",
                   color: "#fff",
                   fontWeight: "bold",
@@ -570,8 +572,11 @@ const CartDetails = () => {
                     Total amount: {calculateTotal().toLocaleString()} VND
                   </Text>
                   <Button
-                    type="primary"
-                    style={{ marginLeft: "20px" }}
+                    style={{
+                      marginLeft: "20px",
+                      backgroundColor: "#143D60",
+                      color: "#fff",
+                    }}
                     onClick={async () => {
                       const selectedBooks = cartItems
                         .filter((item) => item.selected) // Lọc sách được chọn
@@ -715,7 +720,6 @@ const CartDetails = () => {
           backgroundColor: "#343a40",
           padding: "10px 0",
           bottom: 0,
-          position: "sticky",
           width: "100%",
         }}
       >

@@ -457,7 +457,7 @@ const OrderHistory = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "#0fa4d6",
+          backgroundColor: "#8ebe8b",
           padding: "0 20px",
           height: "64px",
           color: "#fff",
@@ -468,7 +468,7 @@ const OrderHistory = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="logo-bookstore.jpg"
+            src="/logo-bookstore2.png"
             alt="Bookstore Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />

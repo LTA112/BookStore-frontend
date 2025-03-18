@@ -141,13 +141,15 @@ const ProfileManagement = () => {
   };
 
   return (
-    <Layout>
+    <Layout
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
       <Header
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "#0fa4d6",
+          backgroundColor: "#8ebe8b",
           padding: "0 20px",
           height: "64px",
           color: "#fff",
@@ -158,7 +160,7 @@ const ProfileManagement = () => {
           onClick={() => navigate("/")} // Navigate to homepage when clicked
         >
           <img
-            src="logo-bookstore.jpg"
+            src="/logo-bookstore2.png"
             alt="Bookstorebook Logo"
             style={{ height: "40px", marginRight: "20px" }}
           />

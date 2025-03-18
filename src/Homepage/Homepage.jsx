@@ -664,10 +664,10 @@ const Homepage = () => {
         </Card>
 
         {selectedCategory ? (
-          <Card>
+          <Card className="book-list justify-content-center mx-auto">
             <Row gutter={[16, 16]}>
               {sortedBooks.map((book) => (
-                <Col key={book.bookID} xs={24} sm={12} md={8} lg={4} xl={4}>
+                <Col key={book.bookID} xs={24} sm={12} md={8} lg={6} xl={6}>
                   <Card
                     hoverable
                     className="book-card"
@@ -709,7 +709,7 @@ const Homepage = () => {
         ) : (
           <>
             <br></br>
-            <Card>
+            <Card className="book-list justify-content-center mx-auto">
               <Divider
                 orientation="center"
                 style={{
@@ -728,8 +728,8 @@ const Homepage = () => {
                     xs={24}
                     sm={12}
                     md={8}
-                    lg={4}
-                    xl={4}
+                    lg={6}
+                    xl={6}
                   >
                     <Card
                       hoverable
@@ -815,7 +815,7 @@ const Homepage = () => {
           backgroundColor: "#343a40",
           padding: "10px 0",
           bottom: 0,
-          position: "sticky",
+
           width: "100%",
         }}
       >

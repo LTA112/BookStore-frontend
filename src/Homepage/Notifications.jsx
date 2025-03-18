@@ -86,6 +86,9 @@ const Notifications = () => {
     logout();
     navigate("/");
   };
+  const handleCartClick = () => {
+    navigate("/cart/ViewDetail");
+  };
   const handleDashboardClick = () => {
     navigate("/dashboard/income-statistic");
   };
@@ -132,13 +135,15 @@ const Notifications = () => {
   };
 
   return (
-    <Layout>
+    <Layout
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
       <Header
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "#0fa4d6",
+          backgroundColor: "#8ebe8b",
           padding: "0 20px",
           height: "64px",
           color: "#fff",
@@ -157,6 +162,7 @@ const Notifications = () => {
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <ShoppingCartOutlined
+            onClick={handleCartClick}
             style={{ fontSize: "24px", marginRight: "20px", color: "#fff" }}
           />
           <Dropdown
@@ -176,16 +182,15 @@ const Notifications = () => {
           </Dropdown>
         </div>
       </Header>
-      <Card>
-        <List
-          itemLayout="horizontal"
-          dataSource={notifications}
-          renderItem={renderItem}
-          pagination={{ pageSize: 7 }}
-          loading={isLoading} // Display loading indicator while fetching data
-          locale={{ emptyText: error ? error : "No notifications yet" }} // Display custom message for loading or error states
-        />
-      </Card>
+
+      <List
+        itemLayout="horizontal"
+        dataSource={notifications}
+        renderItem={renderItem}
+        pagination={{ pageSize: 7 }}
+        loading={isLoading} // Display loading indicator while fetching data
+        locale={{ emptyText: error ? error : "No notifications yet" }} // Display custom message for loading or error states
+      />
 
       <Modal
         title={selectedNotifications.notTitle}
@@ -206,7 +211,7 @@ const Notifications = () => {
           backgroundColor: "#343a40",
           padding: "10px 0",
           bottom: 0,
-          position: "absolute",
+          position: "fixed",
           width: "100%",
         }}
       >

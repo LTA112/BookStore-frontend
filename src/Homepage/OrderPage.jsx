@@ -150,7 +150,7 @@ const OrderPage = () => {
 
   const normalizeImageUrl = (imageUrl) => {
     if (!imageUrl || typeof imageUrl !== "string") {
-      return "logo-bookstore.jpg"; // Đường dẫn ảnh mặc định
+      return "/logo-bookstore2.png"; // Đường dẫn ảnh mặc định
     }
     if (imageUrl.startsWith("/uploads")) {
       return `http://localhost:6789${imageUrl}`; // Gắn đường dẫn đầy đủ nếu bắt đầu bằng `/uploads`
@@ -272,7 +272,7 @@ const OrderPage = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "#0fa4d6",
+          backgroundColor: "#8ebe8b",
           padding: "0 20px",
           height: "64px",
           color: "#fff",
@@ -283,9 +283,12 @@ const OrderPage = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="logo-bookstore.jpg"
+            src="/logo-bookstore2.png"
             alt="Bookstore Logo"
-            style={{ height: "40px", marginRight: "20px" }}
+            style={{
+              height: "40px",
+              marginRight: "20px",
+            }}
           />
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>Bookstore</div>
         </div>
@@ -302,14 +305,10 @@ const OrderPage = () => {
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Thêm hiệu ứng bóng
             }}
             onMouseEnter={
-              (e) =>
-                (e.currentTarget.style.boxShadow =
-                  "0 6px 12px rgba(0, 123, 255, 0.5)") // Bóng xanh khi hover
+              (e) => (e.currentTarget.style.boxShadow = "0 6px 12px#A0C878") // Bóng xanh khi hover
             }
             onMouseLeave={
-              (e) =>
-                (e.currentTarget.style.boxShadow =
-                  "0 4px 8px rgba(135, 206, 235, 0.5)") // Quay lại bóng mặc định
+              (e) => (e.currentTarget.style.boxShadow = "0 4px 8px #DDEB9D") // Quay lại bóng mặc định
             }
           >
             <div>
@@ -371,14 +370,10 @@ const OrderPage = () => {
               backgroundColor: "#f5f5f5", // Nền xám nhạt
             }}
             onMouseEnter={
-              (e) =>
-                (e.currentTarget.style.boxShadow =
-                  "0 6px 12px rgba(0, 123, 255, 0.5)") // Bóng xanh khi hover
+              (e) => (e.currentTarget.style.boxShadow = "0 6px 12px #A0C878") // Bóng xanh khi hover
             }
             onMouseLeave={
-              (e) =>
-                (e.currentTarget.style.boxShadow =
-                  "0 4px 8px rgba(135, 206, 235, 0.5)") // Quay lại bóng mặc định
+              (e) => (e.currentTarget.style.boxShadow = "0 4px 8px #DDEB9D") // Quay lại bóng mặc định
             }
           >
             <Table
@@ -442,14 +437,10 @@ const OrderPage = () => {
               marginTop: "20px", //ok
             }}
             onMouseEnter={
-              (e) =>
-                (e.currentTarget.style.boxShadow =
-                  "0 6px 12px rgba(0, 123, 255, 0.5)") // Bóng xanh khi hover
+              (e) => (e.currentTarget.style.boxShadow = "0 6px 12px #A0C878") // Bóng xanh khi hover
             }
             onMouseLeave={
-              (e) =>
-                (e.currentTarget.style.boxShadow =
-                  "0 4px 8px rgba(135, 206, 235, 0.5)") // Quay lại bóng mặc định
+              (e) => (e.currentTarget.style.boxShadow = "0 4px 8px #DDEB9D") // Quay lại bóng mặc định
             }
           >
             <Row
