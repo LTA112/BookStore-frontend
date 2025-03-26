@@ -9,6 +9,7 @@ import {
   InfoCircleOutlined,
 } from "@ant-design/icons";
 import { checkAdminRole } from "../jwtConfig.jsx";
+import Footer from "../FooterForDashboard/Footer.jsx";
 
 const { Search } = Input;
 
@@ -236,15 +237,9 @@ const AccountManagement = () => {
           loading={loading}
           pagination={{ pageSize: 10 }}
         />
-
         {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
-
-      <div className="copyright">
-        <div>© Copyright {new Date().getFullYear()}</div>
-        <div>Bookstore Management System</div>
-        <div>All Rights Reserved</div>
-      </div>
+      <Footer></Footer>
     </div>
   );
 };

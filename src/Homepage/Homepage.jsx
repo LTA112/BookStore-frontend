@@ -578,32 +578,6 @@ const Homepage = () => {
         </div>
       </Header>
 
-      <Carousel className="c">
-        <Carousel.Item interval={3000}>
-          <img
-            className="d-block w-100"
-            src="/images-slides/slide1.jpg"
-            alt="First slide"
-          />
-        </Carousel.Item>
-
-        <Carousel.Item interval={3000}>
-          <img
-            className="d-block w-100"
-            src="/images-slides/slide2.jpg"
-            alt="Second slide"
-          />
-        </Carousel.Item>
-
-        <Carousel.Item interval={3000}>
-          <img
-            className="d-block w-100"
-            src="/images-slides/slide3.png"
-            alt="Third slide"
-          />
-        </Carousel.Item>
-      </Carousel>
-
       <Content
         style={{
           minHeight: "600px",
@@ -664,52 +638,116 @@ const Homepage = () => {
         </Card>
 
         {selectedCategory ? (
-          <Card className="book-list justify-content-center mx-auto">
-            <Row gutter={[16, 16]}>
-              {sortedBooks.map((book) => (
-                <Col key={book.bookID} xs={24} sm={12} md={8} lg={6} xl={6}>
-                  <Card
-                    hoverable
-                    className="book-card"
-                    onClick={() => handleBookClick(book.bookID)}
-                    cover={
-                      <div className="image-container">
-                        <img
-                          alt={book.bookTitle}
-                          src={normalizeImageUrl(book.image)}
-                          className="book-image"
-                          style={{ height: "200px", objectFit: "contain" }}
-                        />
-                      </div>
-                    }
-                  >
-                    <Title level={4} className="book-title">
-                      {book.bookTitle}
-                    </Title>
-                    <Title level={5} type="secondary" className="book-price">
-                      Author: {book.author}
-                    </Title>
-                    <Title level={5} type="danger" className="book-price">
-                      {`${book.bookPrice.toLocaleString("vi-VN")} đ`}{" "}
-                    </Title>
-                    {book.discount && (
-                      <Tag
-                        color="volcano"
-                        className="book-discount"
-                      >{`${book.discount}% off`}</Tag>
-                    )}
-                    <Title level={5} type="danger">
-                      Quantity: {book.bookQuantity}
-                    </Title>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </Card>
+          <>
+            <br></br>
+            <Carousel>
+              <Carousel.Item interval={3000}>
+                <img
+                  className="d-block w-100"
+                  style={{ borderRadius: "5px" }}
+                  src="/images-slides/slide1.jpg"
+                  alt="First slide"
+                />
+              </Carousel.Item>
+
+              <Carousel.Item interval={3000}>
+                <img
+                  className="d-block w-100"
+                  style={{ borderRadius: "5px" }}
+                  src="/images-slides/slide2.jpg"
+                  alt="Second slide"
+                />
+              </Carousel.Item>
+
+              <Carousel.Item interval={3000}>
+                <img
+                  className="d-block w-100"
+                  style={{ borderRadius: "5px" }}
+                  src="/images-slides/slide3.png"
+                  alt="Third slide"
+                />
+              </Carousel.Item>
+            </Carousel>
+            <br></br>
+            <Card className="book-list justify-content-center mx-auto">
+              <Row gutter={[16, 16]}>
+                {sortedBooks.map((book) => (
+                  <Col key={book.bookID} xs={24} sm={12} md={8} lg={6} xl={4}>
+                    <Card
+                      hoverable
+                      className="book-card"
+                      onClick={() => handleBookClick(book.bookID)}
+                      cover={
+                        <div className="image-container">
+                          <img
+                            alt={book.bookTitle}
+                            src={normalizeImageUrl(book.image)}
+                            className="book-image"
+                            style={{ height: "200px", objectFit: "contain" }}
+                          />
+                        </div>
+                      }
+                    >
+                      <Title level={4} className="book-title">
+                        {book.bookTitle}
+                      </Title>
+                      <Title level={5} type="secondary" className="book-price">
+                        Author: {book.author}
+                      </Title>
+                      <Title level={5} type="danger" className="book-price">
+                        {`${book.bookPrice.toLocaleString("vi-VN")} đ`}{" "}
+                      </Title>
+                      {book.discount && (
+                        <Tag
+                          color="volcano"
+                          className="book-discount"
+                        >{`${book.discount}% off`}</Tag>
+                      )}
+                      <Title level={5} type="danger">
+                        Quantity: {book.bookQuantity}
+                      </Title>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </Card>
+          </>
         ) : (
           <>
             <br></br>
-            <Card className="book-list justify-content-center mx-auto">
+            <Carousel>
+              <Carousel.Item interval={3000}>
+                <img
+                  className="d-block w-100"
+                  style={{ borderRadius: "5px" }}
+                  src="/images-slides/slide1.jpg"
+                  alt="First slide"
+                />
+              </Carousel.Item>
+
+              <Carousel.Item interval={3000}>
+                <img
+                  className="d-block w-100"
+                  style={{ borderRadius: "5px" }}
+                  src="/images-slides/slide2.jpg"
+                  alt="Second slide"
+                />
+              </Carousel.Item>
+
+              <Carousel.Item interval={3000}>
+                <img
+                  className="d-block w-100"
+                  style={{ borderRadius: "5px" }}
+                  src="/images-slides/slide3.png"
+                  alt="Third slide"
+                />
+              </Carousel.Item>
+            </Carousel>
+            <br></br>
+            <Card
+              className="book-list justify-content-center mx-auto"
+              style={{ width: "100%" }}
+            >
               <Divider
                 orientation="center"
                 style={{
@@ -728,8 +766,8 @@ const Homepage = () => {
                     xs={24}
                     sm={12}
                     md={8}
-                    lg={6}
-                    xl={6}
+                    lg={4}
+                    xl={4}
                   >
                     <Card
                       hoverable
@@ -815,7 +853,6 @@ const Homepage = () => {
           backgroundColor: "#343a40",
           padding: "10px 0",
           bottom: 0,
-
           width: "100%",
         }}
       >

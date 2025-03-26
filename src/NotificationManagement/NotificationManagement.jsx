@@ -19,6 +19,7 @@ import {
   checkWarehouseStaffRole,
   decodeJWT,
 } from "../jwtConfig.jsx";
+import Footer from "../FooterForDashboard/Footer.jsx";
 
 const { Search } = Input;
 
@@ -219,6 +220,7 @@ const NotificationManagement = () => {
 
         {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
+      <Footer></Footer>
     </div>
   );
 };

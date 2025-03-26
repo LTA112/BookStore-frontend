@@ -3,16 +3,16 @@ const Footer = () => {
     <div
       className="copyright"
       style={{
+        textAlign: "center",
+        color: "#fff",
+        backgroundColor: "#343a40",
+        padding: "10px 0",
+        bottom: 0,
+        position: "",
         width: "100vw",
-        position: "static",
-        bottom: "-4%",
-        left: "0",
-        padding: "0.5% 0",
-        zIndex: "0",
       }}
     >
-      <div>© Copyright {new Date().getFullYear()}</div>
-      <div>Bookstore Management System</div>
+      <div>© {new Date().getFullYear()} Bookstore Management System</div>
       <div>All Rights Reserved</div>
     </div>
   );

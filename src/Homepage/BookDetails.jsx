@@ -7,6 +7,13 @@ import {
   Dropdown,
   Input,
   Tag,
+  Card,
+  Col,
+  Row,
+  Select,
+  Space,
+  TreeSelect,
+  message,
 } from "antd"; // Added Tag here
 import {
   fetchBookById,
@@ -15,6 +22,10 @@ import {
   fetchOrderDetail,
   fetchOrdersHomepage,
   fetchOrderDetail_homepage,
+  sortBooks,
+  fetchBooksByCategory,
+  fetchBooks,
+  searchBook,
 } from "../config";
 import {
   AppstoreOutlined,
@@ -22,6 +33,12 @@ import {
   BellOutlined,
   UserOutlined,
   SettingOutlined,
+  FilterOutlined,
+  SearchOutlined,
+  RiseOutlined,
+  FallOutlined,
+  SortAscendingOutlined,
+  SortDescendingOutlined,
 } from "@ant-design/icons";
 import AddBookToCart from "./AddBookToCart";
 import React, { useEffect, useState } from "react";
@@ -33,6 +50,7 @@ import {
   checkWarehouseStaffRole,
   decodeJWT,
 } from "../jwtConfig";
+import { Option } from "antd/es/mentions";
 
 const { Header, Content, Footer } = Layout;
 const { Search } = Input; // Correct Search import
@@ -63,6 +81,12 @@ const BookDetails = () => {
 
   const [imagePreview, setImagePreview] = useState(null);
   const [soldCount, setSoldCount] = useState(0); // Di chuyển dòng này vào đây
+  const [books, setBooks] = useState([]); // State for books
+  const [sortOrder, setSortOrder] = useState("default"); // State for sorting
+  const [selectedCategory, setSelectedCategory] = useState(null); // State for selected category
+  const [searchTerm, setSearchTerm] = useState(""); // State for search term
+  const [categories, setCategories] = useState([]); // State for categories
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -175,6 +199,197 @@ const BookDetails = () => {
     } else navigate("/auth/login");
   };
 
+  const handleSortChange = async (value) => {
+    try {
+      setSortOrder(value);
+      const [sortBy, sortOrder = "asc"] = value.split(/(?=[A-Z])/); // Phân tách `value` thành `sortBy` và `sortOrder`
+      const response = await sortBooks(
+        sortBy.toLowerCase(),
+        sortOrder.toLowerCase()
+      ); // Gọi API với đúng tham số
+      let bookData = response.data.filter((book) => book.bookStatus === 1);
+      if (selectedCategory != 0 && selectedCategory != null) {
+        bookData = bookData.filter((book) =>
+          book.bookCategories?.some(
+            (bookCategory) => bookCategory.catId?.catID === selectedCategory
+          )
+        );
+      }
+      if (searchTerm.trim()) {
+        bookData =
+          bookData.filter((book) =>
+            book?.bookTitle?.toLowerCase().includes(searchTerm)
+          ) ||
+          books.filter((book) =>
+            book?.author?.toLowerCase().includes(searchTerm)
+          );
+      }
+      setBooks(bookData);
+    } catch (error) {
+      console.error("Failed to sort books:", error);
+      message.error("Failed to sort books. Please try again."); // Hiển thị thông báo lỗi
+    }
+  };
+
+  // Filter books based on the search term, category, and only include those with bookStatus = 1
+  const filteredBooks = async (categoryID) => {
+    let bookData;
+    if (categoryID != 0) {
+      try {
+        const response = await fetchBooksByCategory(categoryID);
+        console.log(response);
+        bookData = response.data.filter((book) => book.bookStatus === 1); // Chỉ lấy sách có trạng thái hợp lệ
+        setSelectedCategory(categoryID);
+      } catch {
+        const response = await fetchBooks();
+        bookData = response.data.filter((book) => book.bookStatus === 1); // Chỉ lấy sách có trạng thái hợp lệ
+        setSelectedCategory(0);
+        message.error("There isn's any book in this category!");
+      }
+    } else {
+      const response = await fetchBooks();
+      bookData = response.data.filter((book) => book.bookStatus === 1); // Chỉ lấy sách có trạng thái hợp lệ
+      setSelectedCategory(categoryID);
+    }
+    if (searchTerm.trim()) {
+      bookData =
+        bookData.filter((book) =>
+          book?.bookTitle?.toLowerCase().includes(searchTerm)
+        ) ||
+        books.filter((book) =>
+          book?.author?.toLowerCase().includes(searchTerm)
+        );
+    }
+    if (sortOrder !== "default") {
+      switch (sortOrder) {
+        case "priceAsc":
+          bookData.sort((a, b) => a.bookPrice - b.bookPrice);
+          break;
+        case "priceDesc":
+          bookData.sort((a, b) => b.bookPrice - a.bookPrice);
+          break;
+        case "titleAsc":
+          bookData.sort((a, b) => {
+            const nameA = a.bookTitle.toUpperCase();
+            const nameB = b.bookTitle.toUpperCase();
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+            return 0;
+          });
+          break;
+        case "titleDesc":
+          bookData.sort((a, b) => {
+            const nameA = a.bookTitle.toUpperCase();
+            const nameB = b.bookTitle.toUpperCase();
+            if (nameA < nameB) {
+              return 1;
+            }
+            if (nameA > nameB) {
+              return -1;
+            }
+            return 0;
+          });
+          break;
+      }
+    }
+    setBooks(bookData);
+  };
+
+  // Hàm xây dựng cấu trúc treeData cho TreeSelect
+  const buildTreeData = (categories) => {
+    const map = {};
+    const roots = [];
+    roots.push(
+      (map[0] = {
+        title: "All",
+        value: 0,
+        key: 0,
+      })
+    );
+    categories.forEach((category) => {
+      map[category.catID] = {
+        title: category.catName,
+        value: category.catID,
+        key: category.catID,
+      };
+      roots.push(map[category.catID]);
+    });
+  };
+
+  // Handle search input
+  const handleSearch = async (value) => {
+    setLoading(true); // Kích hoạt trạng thái tải
+    console.log(value);
+    setSearchTerm(value.toLowerCase());
+    let bookData;
+    try {
+      if (!value.trim()) {
+        // Nếu searchTerm trống, hiển thị toàn bộ sách
+        const response = await fetchBooks(); // Gọi API để lấy tất cả sách
+        bookData = response.data.filter((book) => book.bookStatus === 1); // Lọc sách hợp lệ
+        message.info("Displaying all books."); // Hiển thị thông báo
+      } else {
+        // Nếu có từ khóa, thực hiện tìm kiếm
+        const response = await searchBook(value); // Gọi API tìm kiếm
+        bookData = response.data.filter((book) => book.bookStatus === 1);
+        message.success("Search completed."); // Hiển thị thông báo
+      }
+      if (selectedCategory != 0 && selectedCategory != null) {
+        bookData = bookData.filter((book) =>
+          book.bookCategories?.some(
+            (bookCategory) => bookCategory.catId?.catID === selectedCategory
+          )
+        );
+      }
+      if (sortOrder !== "default") {
+        switch (sortOrder) {
+          case "priceAsc":
+            bookData.sort((a, b) => a.bookPrice - b.bookPrice);
+            break;
+          case "priceDesc":
+            bookData.sort((a, b) => b.bookPrice - a.bookPrice);
+            break;
+          case "titleAsc":
+            bookData.sort((a, b) => {
+              const nameA = a.bookTitle.toUpperCase();
+              const nameB = b.bookTitle.toUpperCase();
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              return 0;
+            });
+            break;
+          case "titleDesc":
+            bookData.sort((a, b) => {
+              const nameA = a.bookTitle.toUpperCase();
+              const nameB = b.bookTitle.toUpperCase();
+              if (nameA < nameB) {
+                return 1;
+              }
+              if (nameA > nameB) {
+                return -1;
+              }
+              return 0;
+            });
+            break;
+        }
+      }
+      setBooks(bookData);
+    } catch (error) {
+      console.error("Error searching books:", error);
+      message.error("Failed to load books.");
+    } finally {
+      setLoading(false); // Tắt trạng thái tải
+    }
+  };
+
   return (
     <Layout
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
@@ -201,12 +416,6 @@ const BookDetails = () => {
           />
           <div style={{ fontSize: "20px", fontWeight: "bold" }}>Bookstore</div>
         </div>
-
-        <Search
-          placeholder="Search for books or orders"
-          enterButton
-          style={{ maxWidth: "500px" }}
-        />
 
         <div style={{ display: "flex", alignItems: "center" }}>
           <Button

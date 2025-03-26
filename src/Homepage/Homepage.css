@@ -1,7 +1,3 @@
-.book-list {
-  max-width: 1200px; /* Giới hạn chiều rộng */
-  margin: 0 auto; /* Căn giữa danh sách sách */
-}
 /* Card chung */
 .book-card,
 .category-book-card {

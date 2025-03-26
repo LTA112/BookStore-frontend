@@ -200,7 +200,7 @@ const DashboardContainer = () => {
       onMouseEnter={() => setCollapsed(false)} // Mở rộng menu khi di chuột vào
       onMouseLeave={() => setCollapsed(true)} // Thu gọn menu khi di chuột ra
       style={{
-        width: collapsed ? "80px" : "250px",
+        width: collapsed ? "100px" : "200px",
         transition: "width 0.3s ease",
       }}
     >
@@ -222,6 +222,10 @@ const DashboardContainer = () => {
           margin: "10px 0",
           color: "#333",
           cursor: "pointer",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          display: "block",
         }}
         onClick={() => navigate("/dashboard/profile")}
       >

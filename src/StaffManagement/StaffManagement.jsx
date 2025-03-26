@@ -229,11 +229,7 @@ const StaffManagement = () => {
 
         {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
-      <div className="copyright">
-        <div>© Copyright {new Date().getFullYear()}</div>
-        <div>Bookstore Management System</div>
-        <div>All Rights Reserved</div>
-      </div>
+      <Footer></Footer>
     </div>
   );
 };

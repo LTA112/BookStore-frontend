@@ -600,7 +600,6 @@ const CartDetails = () => {
                         for (const item of selectedBooks) {
                           // Gọi API xóa theo cartID
                         }
-
                         // Chuyển hướng sang trang OrderPage với dữ liệu sách đã chọn
                         navigate("/OrderPage", {
                           state: { bookData: selectedBooks },

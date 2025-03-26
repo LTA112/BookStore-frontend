@@ -34,6 +34,7 @@ import {
   EditOutlined,
   InfoCircleOutlined,
 } from "@ant-design/icons";
+import Footer from "../FooterForDashboard/Footer.jsx";
 
 const { Option } = Select;
 
@@ -650,11 +651,7 @@ const PromotionManagement = () => {
         </Modal>
       </div>
 
-      <div className="copyright">
-        <div>© {new Date().getFullYear()}</div>
-        <div>Bookstore Management System</div>
-        <div>All Rights Reserved</div>
-      </div>
+      <Footer></Footer>
     </div>
   );
 };

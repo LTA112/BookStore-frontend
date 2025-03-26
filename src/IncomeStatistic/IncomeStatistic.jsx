@@ -16,6 +16,8 @@ import {
   checkWarehouseStaffRole,
   checkSellerStaffRole,
 } from "../jwtConfig";
+import Footer from "../FooterForDashboard/Footer";
+import { Container } from "react-bootstrap";
 
 const RevenueReport = () => {
   const [loading, setLoading] = useState(true);
@@ -419,161 +421,167 @@ const RevenueReport = () => {
   ];
 
   return (
-    <div
-      className="main-container"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        minHeight: "100vh", // Đổi từ height sang minHeight để cho phép cuộn
-        padding: "20px", // Thêm padding để tránh nội dung chạm sát mép
-        overflow: "auto", // Cho phép cuộn khi nội dung vượt quá
-      }}
-    >
-      <DashboardContainer />
+    <>
       <div
-        className="dashboard-content"
+        className="main-container"
         style={{
-          textAlign: "center",
-          width: "80%",
-          marginLeft: "150px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          minHeight: "100vh",
+          padding: "20px",
+          gap: "30px", // Tạo khoảng cách đều giữa các phần
         }}
       >
-        <div style={{ marginBottom: "40px" }}>
-          <h1 style={{ textAlign: "center", margin: "20px 0" }}>
-            Revenue Report This Month
-          </h1>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <LineChart
-              xAxis={[
-                {
-                  scaleType: "band",
-                  data: sortedData.map((item) => item.date),
-                  label: "Dates",
-                },
-              ]}
-              series={[
-                {
-                  data: filteredData.map((item) => item.Import),
-                  label: "Import (VND)",
-                  color: "#8884d8",
-                },
-                {
-                  data: filteredData.map((item) => item.Export),
-                  label: "Export (VND)",
-                  color: "#82ca9d",
-                },
-                {
-                  data: filteredData.map((item) => item.Revenue),
-                  label: "Revenue (VND)",
-                  color: "#ff7300",
-                  lineStyle: { strokeWidth: 2 },
-                },
-              ]}
-              width={2000}
-              height={400}
-              tooltip={(value) => `${value.toLocaleString()} VND`} // Hiển thị giá trị qua tooltip
+        <DashboardContainer />
+
+        <div
+          className="dashboard-content"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr", // Sắp xếp theo chiều dọc
+            justifyItems: "center",
+            width: "90%", // Giới hạn chiều rộng
+            maxWidth: "1200px", // Không để quá rộng
+          }}
+        >
+          {/* Biểu đồ doanh thu */}
+          <div style={{ width: "100%", textAlign: "center" }}>
+            <h1>Revenue Report This Month</h1>
+            <div style={{ overflowX: "auto" }}>
+              <LineChart
+                xAxis={[
+                  {
+                    scaleType: "band",
+                    data: sortedData.map((item) => item.date),
+                    label: "Dates",
+                  },
+                ]}
+                series={[
+                  {
+                    data: filteredData.map((item) => item.Import),
+                    label: "Import (VND)",
+                    color: "#8884d8",
+                  },
+                  {
+                    data: filteredData.map((item) => item.Export),
+                    label: "Export (VND)",
+                    color: "#82ca9d",
+                  },
+                  {
+                    data: filteredData.map((item) => item.Revenue),
+                    label: "Revenue (VND)",
+                    color: "#ff7300",
+                    lineStyle: { strokeWidth: 2 },
+                  },
+                ]}
+                width={900} // Giảm chiều rộng
+                height={400}
+              />
+            </div>
+          </div>
+
+          {/* Bảng sách đã bán */}
+          <div style={{ width: "100%", textAlign: "center" }}>
+            <h2>Books Sold</h2>
+            <Table
+              dataSource={booksData}
+              columns={columns}
+              rowKey="bookId"
+              bordered
+              pagination={{ pageSize: 10 }}
+              style={{ width: "100%" }}
+            />
+          </div>
+
+          {/* Bảng sách đã nhập */}
+          <div style={{ width: "100%", textAlign: "center" }}>
+            <h2>Books Imported Of All Time</h2>
+            <Table
+              dataSource={importedBooksData}
+              columns={importedColumns}
+              rowKey="isdid"
+              bordered
+              pagination={{ pageSize: 10 }}
+              style={{ width: "100%" }}
             />
           </div>
         </div>
 
-        <div style={{ marginBottom: "40px" }}>
-          <h2 style={{ textAlign: "center", margin: "20px 0" }}>Books Sold</h2>
-          <Table
-            dataSource={booksData}
-            columns={columns}
-            rowKey="bookId"
-            bordered
-            pagination={{ pageSize: 10 }}
-            style={{ margin: "0 auto" }}
-          />
-        </div>
-
-        <div style={{ marginBottom: "40px" }}>
-          <h2 style={{ textAlign: "center", margin: "20px 0" }}>
-            Books Imported Of All Time
-          </h2>
-          <Table
-            dataSource={importedBooksData} // Dữ liệu đã xử lý
-            columns={importedColumns} // Cột hiển thị
-            rowKey="isdid" // Khóa duy nhất cho từng hàng (cột isdid trong dữ liệu)
-            bordered
-            pagination={{ pageSize: 10 }}
-            style={{ margin: "20px 0" }}
-          />
-        </div>
-      </div>
-      <Modal
-        title="Book Detail"
-        visible={isModalVisible}
-        onCancel={handleCancel}
-        footer={[
-          <Button key="back" onClick={handleCancel}>
-            Close
-          </Button>,
-        ]}
-      >
-        {selectedBook && (
-          <div style={{ display: "flex", alignItems: "flex-start" }}>
-            <div style={{ flex: 1 }}>
-              <p>
-                <strong>Book ID:</strong> {selectedBook.bookID || "N/A"}
-              </p>
-              <p>
-                <strong>Title:</strong> {selectedBook.bookTitle || "N/A"}
-              </p>
-              <p>
-                <strong>Author:</strong> {selectedBook.author || "N/A"}
-              </p>
-              <p>
-                <strong>Translator:</strong> {selectedBook.translator || "N/A"}
-              </p>
-              <p>
-                <strong>Publisher:</strong> {selectedBook.publisher || "N/A"}
-              </p>
-              <p>
-                <strong>Publication Year:</strong>{" "}
-                {selectedBook.publicationYear || "N/A"}
-              </p>
-              <p>
-                <strong>ISBN:</strong> {selectedBook.isbn || "N/A"}
-              </p>
-              <p>
-                <strong>Description:</strong>{" "}
-                {selectedBook.bookDescription || "N/A"}
-              </p>
-              <p>
-                <strong>Quantity:</strong> {selectedQuantity || "N/A"}
-              </p>
-              <p>
-                <strong>Price:</strong>{" "}
-                {selectedBook.bookPrice
-                  ? `${new Intl.NumberFormat("en-US").format(
-                      selectedBook.bookPrice
-                    )} VND`
-                  : "N/A"}
-              </p>
-            </div>
-            {console.log("Sách đang được chọn: ", selectedBook)}
-            {selectedBook.image ? (
-              <div style={{ marginLeft: "20px", maxWidth: "200px" }}>
-                <img
-                  src={
-                    selectedBook.image.startsWith("http")
-                      ? selectedBook.image
-                      : `http://localhost:6789${selectedBook.image}`
-                  }
-                  alt="Book Cover"
-                  style={{ width: "100%", borderRadius: "5px" }}
-                />
+        <Modal
+          title="Book Detail"
+          visible={isModalVisible}
+          onCancel={handleCancel}
+          footer={[
+            <Button key="back" onClick={handleCancel}>
+              Close
+            </Button>,
+          ]}
+        >
+          {selectedBook && (
+            <div style={{ display: "flex", gap: "20px" }}>
+              <div style={{ flex: 1 }}>
+                <p>
+                  <strong>Book ID:</strong> {selectedBook.bookID || "N/A"}
+                </p>
+                <p>
+                  <strong>Title:</strong> {selectedBook.bookTitle || "N/A"}
+                </p>
+                <p>
+                  <strong>Author:</strong> {selectedBook.author || "N/A"}
+                </p>
+                <p>
+                  <strong>Translator:</strong>{" "}
+                  {selectedBook.translator || "N/A"}
+                </p>
+                <p>
+                  <strong>Publisher:</strong> {selectedBook.publisher || "N/A"}
+                </p>
+                <p>
+                  <strong>Publication Year:</strong>{" "}
+                  {selectedBook.publicationYear || "N/A"}
+                </p>
+                <p>
+                  <strong>ISBN:</strong> {selectedBook.isbn || "N/A"}
+                </p>
+                <p>
+                  <strong>Description:</strong>{" "}
+                  {selectedBook.bookDescription || "N/A"}
+                </p>
+                <p>
+                  <strong>Quantity:</strong> {selectedQuantity || "N/A"}
+                </p>
+                <p>
+                  <strong>Price:</strong>{" "}
+                  {selectedBook.bookPrice
+                    ? `${new Intl.NumberFormat("en-US").format(
+                        selectedBook.bookPrice
+                      )} VND`
+                    : "N/A"}
+                </p>
               </div>
-            ) : (
-              <p>No Image Available</p>
-            )}
-          </div>
-        )}
-      </Modal>
-    </div>
+              {selectedBook.image ? (
+                <div style={{ width: "200px" }}>
+                  <img
+                    src={
+                      selectedBook.image.startsWith("http")
+                        ? selectedBook.image
+                        : `http://localhost:6789${selectedBook.image}`
+                    }
+                    alt="Book Cover"
+                    style={{ width: "100%", borderRadius: "5px" }}
+                  />
+                </div>
+              ) : (
+                <p>No Image Available</p>
+              )}
+            </div>
+          )}
+        </Modal>
+
+        <Footer />
+      </div>
+    </>
   );
 };
 

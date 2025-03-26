@@ -178,10 +178,12 @@ const AddBookToCart = ({ username, bookId, bookData }) => {
           </div>
           <InputNumber
             min={1}
-            max={bookData.bookQuantity}
             defaultValue={1}
             value={quantity}
             onChange={(value) => {
+              console.log("Stock quantity:", bookData.bookQuantity);
+              console.log("User entered:", value);
+
               if (value > bookData.bookQuantity) {
                 Modal.warning({
                   title: "Exceeds Stock Quantity",

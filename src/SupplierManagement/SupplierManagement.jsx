@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons"; // Import Ant Design icons
 
 import { checkAdminRole, checkWarehouseStaffRole } from "../jwtConfig";
+import Footer from "../FooterForDashboard/Footer.jsx";
 
 const { Search } = Input;
 
@@ -185,11 +186,7 @@ function SupplierManagement() {
           pagination={{ pageSize: 10 }}
         />
       </div>
-      <div className="copyright">
-        <div>© Copyright {new Date().getFullYear()}</div>
-        <div>Bookstore Management System</div>
-        <div>All Rights Reserved</div>
-      </div>
+      <Footer></Footer>
     </div>
   );
 }

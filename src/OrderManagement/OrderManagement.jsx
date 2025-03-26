@@ -26,6 +26,7 @@ import {
   checkSellerStaffRole,
 } from "../jwtConfig.jsx";
 import { fetchStaffByUsername } from "../config"; // Import hàm API lấy staffID
+import Footer from "../FooterForDashboard/Footer.jsx";
 
 const { Search } = Input;
 const { Option } = Select;
@@ -382,11 +383,7 @@ const OrderManagement = () => {
         </Modal>
       </div>
 
-      <div className="copyright">
-        <div>© {new Date().getFullYear()}</div>
-        <div>Bookstore Management System</div>
-        <div>All Rights Reserved</div>
-      </div>
+      <Footer></Footer>
     </div>
   );
 };
