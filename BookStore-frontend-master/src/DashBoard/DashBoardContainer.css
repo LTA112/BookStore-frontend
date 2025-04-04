@@ -1,0 +1,258 @@
+/* Styling for the whole dashboard container */
+.dashboard-container {
+<<<<<<< HEAD
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 80px;
+  /* Mặc định là thu gọn */
+  z-index: 999;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Ẩn phần dư thừa */
+=======
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 80px;
+    /* Mặc định là thu gọn */
+    z-index: 999;
+    background-color: #ffffff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Ẩn phần dư thừa */
+>>>>>>> c4db0e6 (Commit frontend)
+}
+
+/* Khi hover vào sidebar, mở rộng */
+.dashboard-container:hover {
+<<<<<<< HEAD
+  width: 200px;
+}
+
+.logo-container {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.logo-image {
+  width: 100%;
+  height: auto;
+}
+
+.ant-menu {
+  border-right: none;
+  flex-grow: 1;
+  /* Cho phép menu chiếm phần còn lại của chiều cao */
+  overflow-y: auto;
+  /* Cho phép cuộn dọc khi menu dài hơn chiều cao khung chứa */
+  height: calc(100vh - 80px);
+  /* Chiều cao tính toán bằng cách trừ logo hoặc header */
+=======
+    width: 250px;
+}
+
+.logo-container {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.logo-image {
+    width: 100%;
+    height: auto;
+}
+
+.ant-menu {
+    border-right: none;
+    flex-grow: 1;
+    /* Cho phép menu chiếm phần còn lại của chiều cao */
+    overflow-y: auto;
+    /* Cho phép cuộn dọc khi menu dài hơn chiều cao khung chứa */
+    height: calc(100vh - 80px);
+    /* Chiều cao tính toán bằng cách trừ logo hoặc header */
+>>>>>>> c4db0e6 (Commit frontend)
+}
+
+/* Cho phép cuộn khi menu quá dài */
+.ant-menu::-webkit-scrollbar {
+<<<<<<< HEAD
+  width: 6px;
+}
+
+.ant-menu::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+=======
+    width: 6px;
+}
+
+.ant-menu::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+>>>>>>> c4db0e6 (Commit frontend)
+}
+
+/* Khi thanh công cụ mở rộng */
+.dashboard-container.expanded {
+<<<<<<< HEAD
+  width: 200px;
+}
+
+.main-content {
+  margin-left: 80px;
+  /* Dịch phần nội dung sang phải khi sidebar thu gọn */
+  transition: margin-left 0.3s ease;
+}
+
+.dashboard-container:hover ~ .main-content {
+  margin-left: 250px;
+  /* Dịch phần nội dung sang phải khi sidebar mở rộng */
+=======
+    width: 250px;
+}
+
+.main-content {
+    margin-left: 80px;
+    /* Dịch phần nội dung sang phải khi sidebar thu gọn */
+    transition: margin-left 0.3s ease;
+}
+
+.dashboard-container:hover~.main-content {
+    margin-left: 250px;
+    /* Dịch phần nội dung sang phải khi sidebar mở rộng */
+>>>>>>> c4db0e6 (Commit frontend)
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+<<<<<<< HEAD
+  .dashboard-container {
+    position: absolute;
+    z-index: 999;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+.username-container {
+  background-color: #f0f0f0;
+  /* Màu nền xám nhạt */
+  padding: 10px 15px;
+  /* Khoảng cách trong khung */
+  border-radius: 10px;
+  /* Bo tròn các góc */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* Đổ bóng nhẹ */
+  margin: 15px auto;
+  /* Căn giữa khung với khoảng cách trên dưới */
+  width: 80%;
+  /* Độ rộng của khung */
+  text-align: center;
+  /* Căn giữa nội dung */
+  color: #333;
+  /* Màu chữ tối */
+  font-weight: bold;
+  /* Chữ đậm */
+  font-size: 1.2rem;
+  /* Tăng kích thước chữ */
+  transition: background-color 0.3s ease;
+  /* Hiệu ứng chuyển đổi màu nền */
+}
+
+.username-container:hover {
+  background-color: #e0e0e0;
+  /* Đổi màu nền khi hover */
+}
+
+.back-logo-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25px;
+  /* Adjust the width to make the logo smaller */
+  height: 60px;
+  /* Adjust the height to maintain aspect ratio */
+}
+
+.back-logo-container img {
+  width: 100%;
+  /* Make the image fit within the container */
+  height: auto;
+  /* Maintain aspect ratio */
+  object-fit: contain;
+  /* Ensure the image fits well */
+}
+=======
+    .dashboard-container {
+        position: absolute;
+        z-index: 999;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+.username-container {
+    background-color: #f0f0f0;
+    /* Màu nền xám nhạt */
+    padding: 10px 15px;
+    /* Khoảng cách trong khung */
+    border-radius: 10px;
+    /* Bo tròn các góc */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng nhẹ */
+    margin: 15px auto;
+    /* Căn giữa khung với khoảng cách trên dưới */
+    width: 80%;
+    /* Độ rộng của khung */
+    text-align: center;
+    /* Căn giữa nội dung */
+    color: #333;
+    /* Màu chữ tối */
+    font-weight: bold;
+    /* Chữ đậm */
+    font-size: 1.2rem;
+    /* Tăng kích thước chữ */
+    transition: background-color 0.3s ease;
+    /* Hiệu ứng chuyển đổi màu nền */
+}
+
+.username-container:hover {
+    background-color: #e0e0e0;
+    /* Đổi màu nền khi hover */
+}
+
+.back-logo-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    /* Adjust the width to make the logo smaller */
+    height: 60px;
+    /* Adjust the height to maintain aspect ratio */
+}
+
+.back-logo-container img {
+    width: 100%;
+    /* Make the image fit within the container */
+    height: auto;
+    /* Maintain aspect ratio */
+    object-fit: contain;
+    /* Ensure the image fits well */
+}
+>>>>>>> c4db0e6 (Commit frontend)
