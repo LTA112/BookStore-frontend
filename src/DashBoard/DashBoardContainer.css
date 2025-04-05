@@ -13,6 +13,8 @@
   transition: width 0.3s ease;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
   overflow: hidden;
   /* Ẩn phần dư thừa */
 }
@@ -111,7 +113,6 @@
 }
 
 .back-logo-container {
-  position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);

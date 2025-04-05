@@ -219,7 +219,6 @@ const DashboardContainer = () => {
         className="username-container"
         style={{
           textAlign: "center",
-          margin: "10px 0",
           color: "#333",
           cursor: "pointer",
           whiteSpace: "nowrap",
@@ -242,10 +241,13 @@ const DashboardContainer = () => {
         mode="inline"
         items={items}
       />
+
       <div
         className="back-logo-container"
         style={{
-          position: "absolute",
+          marginTop: "30px",
+          position: "sticky",
+          marginLeft: "20px",
           bottom: "20px",
           left: "50%",
           transform: "translateX(-50%)",
