@@ -17,7 +17,7 @@ const onRefreshed = (newToken) => {
 
 client.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('jwtToken'); // Lấy token từ localStorage
+        const token = sessionStorage.getItem('jwtToken'); // Lấy token từ localStorage
         if (token) {
             config.headers.Authorization = `Bearer ${token}`; // Gắn token vào header Authorization
         }
@@ -35,7 +35,7 @@ client.interceptors.response.use(
     }, async (error) => {
         const request = error.config
         if (error.response && error.response.status === 401 && !request._retry) {
-            localStorage.removeItem('jwtToken')
+            sessionStorage.removeItem('jwtToken')
             //window.location.href = '/auth/login'
         }
         return
@@ -172,8 +172,8 @@ const login = async (login) => {
 
 // Logout
 const logout = () => {
-    const token = localStorage.getItem("jwtToken")
-    localStorage.removeItem("jwtToken")
+    const token = sessionStorage.getItem("jwtToken")
+    sessionStorage.removeItem("jwtToken")
     return loginInstance.post('auth/logout', token)
 }
 
@@ -463,6 +463,16 @@ const fetchPromotionLogs = (activity) => {
     return client.get(`/v1/promotions/logs?${params.toString()}`);
 };
 
+const fetchCancelOrder = async (orderID) => {
+    try {
+        const response = await axios.put(`/api/orders/${orderID}/cancel`);
+        return response.data; // Giả sử API trả về thông tin xác nhận
+    } catch (error) {
+        console.error("Error canceling order:", error);
+        throw error; // Thêm xử lý lỗi ở đây nếu cần
+    }
+};
+
 
 export {
     fetchPromotionLogs,
@@ -525,5 +535,6 @@ export {
     deleteNotification,
     fetchNotificationDetail,
     fetchPromotionsHomepage,
-    fetchOrdersHomepage
+    fetchOrdersHomepage,
+    fetchCancelOrder
 };

@@ -28,6 +28,7 @@ import {
   logout,
   fetchPromotionDetail,
   fetchAccountDetail,
+  fetchCancelOrder,
 } from "../config";
 
 const { Header, Footer, Content } = Layout;
@@ -373,6 +374,29 @@ const OrderHistory = () => {
       },
     ];
 
+    const handleCancelOrder = async () => {
+      try {
+        const response = await fetchCancelOrder(orderID); // API hủy đơn hàng
+        if (response?.data?.success) {
+          message.success("Order has been canceled successfully.");
+          // Cập nhật lại danh sách đơn hàng
+          setOrders((prevOrders) =>
+            prevOrders.map((order) =>
+              order.orderID === orderID
+                ? { ...order, orderStatus: 1 } // Cập nhật trạng thái thành "Đã hủy"
+                : order
+            )
+          );
+          setModalVisible(false); // Đóng modal sau khi hủy
+        } else {
+          message.error("Failed to cancel order.");
+        }
+      } catch (error) {
+        message.error("Error occurred while canceling order.");
+        console.error(error);
+      }
+    };
+
     return (
       <Modal
         title={`Order Details - Order ID: ${orderID}`}
@@ -382,6 +406,11 @@ const OrderHistory = () => {
           <Button key="close" onClick={() => setModalVisible(false)}>
             Close
           </Button>,
+          orderStatus !== 1 && ( // Kiểm tra nếu đơn hàng chưa bị hủy
+            <Button key="cancel" onClick={handleCancelOrder}>
+              Cancel Order
+            </Button>
+          ),
         ]}
         width={800}
       >

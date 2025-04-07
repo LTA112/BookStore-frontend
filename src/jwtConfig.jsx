@@ -1,6 +1,6 @@
 export const decodeJWT = () => {
   try {
-    let token = localStorage.getItem("jwtToken");
+    let token = sessionStorage.getItem("jwtToken");
     if (token == null) {
       window.location.href = "/auth/login";
       return;
@@ -26,23 +26,21 @@ export const checkAdminRole = () => {
 };
 
 export const checkSellerStaffRole = () => {
-  let scope = decodeJWT().scope
-  return scope.includes("SELLER_STAFF") ? true : false
-}
+  let scope = decodeJWT().scope;
+  return scope.includes("SELLER_STAFF") ? true : false;
+};
 
 export const checkWarehouseStaffRole = () => {
-  let scope = decodeJWT().scope
-  console.log(scope.includes("WAREHOUSE_STAFF") ? true : false)
-  return scope.includes("WAREHOUSE_STAFF") ? true : false
-}
+  let scope = decodeJWT().scope;
+  console.log(scope.includes("WAREHOUSE_STAFF") ? true : false);
+  return scope.includes("WAREHOUSE_STAFF") ? true : false;
+};
 
 export const checkCustomerRole = () => {
-  let scope = decodeJWT().scope
-  return scope.includes("CUSTOMER") ? true : false
-}
+  let scope = decodeJWT().scope;
+  return scope.includes("CUSTOMER") ? true : false;
+};
 
 export const checkStatusAccount = () => {
-  return decodeJWT().status
-}
-
-
+  return decodeJWT().status;
+};

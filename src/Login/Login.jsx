@@ -21,7 +21,7 @@ const Login = () => {
       if (!response.data) {
         message.error("Username or password is incorrect! Please enter again");
       } else if (response.data.accountDTO) {
-        localStorage.setItem("jwtToken", response.data.token);
+        sessionStorage.setItem("jwtToken", response.data.token);
         message.success("Login successfully");
         if (decodeJWT().status === 2 || decodeJWT().status === 4) {
           const verifyAccountData = {

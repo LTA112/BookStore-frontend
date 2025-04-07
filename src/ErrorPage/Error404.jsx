@@ -124,8 +124,8 @@ const PageNotFound = () => {
               icon={<UserOutlined />}
               style={{ color: "#fff" }}
             >
-              {localStorage.getItem("jwtToken")
-                ? decodeJWT(localStorage.getItem("jwtToken")).sub
+              {sessionStorage.getItem("jwtToken")
+                ? decodeJWT(sessionStorage.getItem("jwtToken")).sub
                 : "Login"}
             </Button>
           </Dropdown>
