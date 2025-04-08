@@ -319,6 +319,18 @@ const addOrder = (orderData) => {
     });
 };
 
+const CancelOrder = async (orderID, username) => {
+    console.log("Order ID:", orderID);
+    try {
+        const response = await axios.put(`/api/v1/orders/customer/cancel/${orderID}`, {
+            username: username // Gửi username để xác thực người dùng
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error canceling order:", error);
+    }
+};
+
 const fetchOrderDetailsByOrderID = (id) => {
     return axios.get(`/api/v1/orders/details/${id}`);
 };
@@ -463,15 +475,8 @@ const fetchPromotionLogs = (activity) => {
     return client.get(`/v1/promotions/logs?${params.toString()}`);
 };
 
-const fetchCancelOrder = async (orderID) => {
-    try {
-        const response = await axios.put(`/api/orders/${orderID}/cancel`);
-        return response.data; // Giả sử API trả về thông tin xác nhận
-    } catch (error) {
-        console.error("Error canceling order:", error);
-        throw error; // Thêm xử lý lỗi ở đây nếu cần
-    }
-};
+
+
 
 
 export {
@@ -536,5 +541,5 @@ export {
     fetchNotificationDetail,
     fetchPromotionsHomepage,
     fetchOrdersHomepage,
-    fetchCancelOrder
+    CancelOrder
 };

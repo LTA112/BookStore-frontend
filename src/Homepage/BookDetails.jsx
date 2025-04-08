@@ -59,7 +59,7 @@ const BookDetails = () => {
   const { bookId } = useParams(); // Get bookId from URL
   const navigate = useNavigate(); // Navigation handler
   let username;
-  if (localStorage.getItem("jwtToken") !== null) {
+  if (sessionStorage.getItem("jwtToken") !== null) {
     username = decodeJWT()?.sub;
   }
 

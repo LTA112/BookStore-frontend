@@ -28,7 +28,7 @@ import {
   logout,
   fetchPromotionDetail,
   fetchAccountDetail,
-  fetchCancelOrder,
+  CancelOrder,
 } from "../config";
 
 const { Header, Footer, Content } = Layout;
@@ -153,11 +153,12 @@ const OrderHistory = () => {
     const lowerCaseTerm = searchTerm.toLowerCase();
     const filtered = orders.filter(
       (order) =>
-        order.orderID.toString().includes(lowerCaseTerm) || // Tìm theo Order ID
-        (orderDetailsMap[order.orderID]?.details || []).some(
-          (detail) =>
-            detail.book?.bookTitle?.toLowerCase().includes(lowerCaseTerm) // Tìm theo Book Title
-        )
+        (order.orderID.toString().includes(lowerCaseTerm) || // Tìm theo Order ID
+          (orderDetailsMap[order.orderID]?.details || []).some(
+            (detail) =>
+              detail.book?.bookTitle?.toLowerCase().includes(lowerCaseTerm) // Tìm theo Book Title
+          )) &&
+        order.orderStatus !== 1 // Loại bỏ các đơn hàng đã hủy
     );
     setFilteredOrders(filtered); // Cập nhật danh sách đã lọc
   };
@@ -376,7 +377,7 @@ const OrderHistory = () => {
 
     const handleCancelOrder = async () => {
       try {
-        const response = await fetchCancelOrder(orderID); // API hủy đơn hàng
+        const response = await CancelOrder(orderID); // API hủy đơn hàng
         if (response?.data?.success) {
           message.success("Order has been canceled successfully.");
           // Cập nhật lại danh sách đơn hàng
@@ -387,12 +388,19 @@ const OrderHistory = () => {
                 : order
             )
           );
+          setFilteredOrders((prevOrders) =>
+            prevOrders.map((order) =>
+              order.orderID === orderID
+                ? { ...order, orderStatus: 1 } // Cập nhật trạng thái đã hủy ở đây cũng
+                : order
+            )
+          );
           setModalVisible(false); // Đóng modal sau khi hủy
         } else {
           message.error("Failed to cancel order.");
         }
       } catch (error) {
-        message.error("Error occurred while canceling order.");
+        message.error(`Error occurred while canceling order: ${error.message}`);
         console.error(error);
       }
     };
@@ -537,8 +545,8 @@ const OrderHistory = () => {
               icon={<UserOutlined />}
               style={{ color: "#fff" }}
             >
-              {localStorage.getItem("jwtToken")
-                ? decodeJWT(localStorage.getItem("jwtToken")).sub
+              {sessionStorage.getItem("jwtToken")
+                ? decodeJWT(sessionStorage.getItem("jwtToken")).sub
                 : "Login"}
             </Button>
           </Dropdown>
